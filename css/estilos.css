@@ -1,1 +1,32 @@
 .main-footer{padding: 5px; font-size: 0.85em}
+
+.dataTables_filter label, .dataTables_filter label input {
+    width: 100% !important;
+    margin: 0 !important;
+}
+.dataTables_info{
+    display: inline;
+}
+.dataTables_length select {
+    padding: 0 2px !important;
+    width: auto !important;
+}
+.paginate_button a{
+     padding: 3px 8px !important;
+ }
+
+.btn-refrescar{
+    margin-right: 6px;
+    font-size: .9em !important;
+    padding: 3px 5px 2px 5px;
+}
+.btnSeparated {
+    margin-right: 5px;
+}
+.dt-btn {
+    cursor: pointer;
+    opacity: 0.4;
+}
+.dt-btn:hover {
+    opacity: 1;
+}

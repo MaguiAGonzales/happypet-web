@@ -26,14 +26,15 @@ $(function () {
         columnDefs: [{
             targets: -1,
             data: null,
-            defaultContent: "<span class='glyphicon glyphicon-pencil dt-btn dt-btn-editar'></span> &nbsp;<span class='glyphicon glyphicon-trash dt-btn dt-btn-eliminar'></span>",
+//            defaultContent: "<span class='glyphicon glyphicon-pencil dt-btn dt-btn-editar'></span> &nbsp;<span class='glyphicon glyphicon-trash dt-btn dt-btn-eliminar'></span>",
+            defaultContent: "<span class='glyphicon glyphicon-trash dt-btn dt-btn-eliminar'></span>",
             className: "text-center",
             responsivePriority: -1,
             width: "40px",
         }],
         columns: [
             { "data": "id", "visible": false},
-            { "data": "imagen", "render": function(data, type, row) {
+            { "data": "imagen", orderable: false, "render": function(data, type, row) {
                 return '<img src="data:image/jpeg;base64,'+data+'" width="90" class="img-bordered-sm" />';
             }},
             { "data": "nombre"},

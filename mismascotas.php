@@ -8,6 +8,21 @@
             .btn-agregar{
                 color: #FFF !important;
             }
+            .btn-refrescar{
+                margin-right: 6px;
+                font-size: .8em !important;
+                padding: 3px 5px 2px 5px;
+            }
+            .btnSeparated {
+                margin-right: 5px;
+            }
+            .dt-btn {
+                cursor: pointer;
+                opacity: 0.4;
+            }
+            .dt-btn:hover {
+                opacity: 1;
+            }
         </style>
     </head>
     <body class="hold-transition skin-blue-light fixed sidebar-mini">
