@@ -18,6 +18,20 @@ switch ($_REQUEST["f"]) {
         }
         echo json_encode(array("success" => $ok, "msg" => $msg));
         break;
+    case "listar":
+        $data = $oMas->listar($_POST);
+        if (sizeof($data) > 0) {
+            $ok = true;
+            $data = $data;
+        } else {
+            $ok = false;
+            $data = "";
+        }
+//        echo json_encode(array("success" => $ok, "mascotas" => $data), JSON_PRETTY_PRINT);
+        header('Content-Type: application/json;charset=utf-8');        
+        echo json_encode($data);      
+        
+        break;
     case 3:
        $idInsetado = $oMas->insertardemo($_GET);
         if ($idInsetado > 0) {
