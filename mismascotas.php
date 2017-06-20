@@ -4,26 +4,7 @@
     <head>
         <title>Mis Mascotas ! SV</title>
         <?php include_once("./sis_css.php"); ?>
-        <style type="text/css">
-            .btn-agregar{
-                color: #FFF !important;
-            }
-            .btn-refrescar{
-                margin-right: 6px;
-                font-size: .8em !important;
-                padding: 3px 5px 2px 5px;
-            }
-            .btnSeparated {
-                margin-right: 5px;
-            }
-            .dt-btn {
-                cursor: pointer;
-                opacity: 0.4;
-            }
-            .dt-btn:hover {
-                opacity: 1;
-            }
-        </style>
+        
     </head>
     <body class="hold-transition skin-blue-light fixed sidebar-mini">
         <div class="wrapper">            
@@ -69,6 +50,12 @@
                         <form id="fMascota" class="form-horizontal">                            
                             <div class="form-group">
                                 <label for="tbNombre" class="col-sm-3 control-label">Nombre</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="tbNombre" name="nombre" maxlength="50" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tbNombre" class="col-sm-3 control-label">Tipo de mascota</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="tbNombre" name="nombre" maxlength="50" >
                                 </div>

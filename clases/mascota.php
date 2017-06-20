@@ -142,7 +142,15 @@ class Mascota {
 
         return json_encode( $output );
     }
-
+    
+    public function listar($data){
+        $this->_misql->sql = "SELECT id, nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento, imagen, id_usuario, es_adoptado FROM mascotas ORDER BY id desc";
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data;
+    }
 
     public function insertar($data) {
         $nombre = htmlentities($data["nombre"]);
@@ -151,12 +159,12 @@ class Mascota {
         $anio = htmlentities($data["anio"]);
         $particilaridades = htmlentities($data["particularidades"]);
         $salud = htmlentities($data["salud"]);
-        $adoptado = htmlentities($data["salud"]);
+        $adoptado = htmlentities($data["adoptado"]);
         $imagen = htmlentities($data["imagen"]);
         
         $fechaActual = date("Y-m-d H:i:s");
         $this->_misql->conectar();
-        $this->_misql->sql = "INSERT INTO mascotas(nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento, imagen, id_usuario) ".
+        $this->_misql->sql = "INSERT INTO mascotas(nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento,  es_adoptado, imagen,id_usuario) ".
             "VALUES(" .
             "'" . $nombre ."', ".
             "'" . $tipo ."', ".
@@ -164,6 +172,7 @@ class Mascota {
             "'" . $particilaridades ."', ".
             "'" . $salud ."', ".
             $anio . ", " .
+            "'" . $adoptado ."', ".
             "'" . $imagen ."', ".
             "1)";
         //echo $this->_misql->sql;
