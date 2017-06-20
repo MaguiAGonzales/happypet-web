@@ -13,5 +13,16 @@ switch ($_REQUEST["f"]) {
             echo $e->getMessage();
         }
         break;
+    case 10:
+        try {
+            if (!$oUsu->validar($_POST)) {
+                header("HTTP/1.1 420 Usuario o Contraseña Incorrecto");
+            }else{
+                http_response_code(200);
+            }
+        } catch (Exception $e) {
+            header("HTTP/1.1 420 Usuario o Contraseña Incorrecto.");
+        }
+
 }
 ?>
