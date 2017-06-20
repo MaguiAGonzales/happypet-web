@@ -152,7 +152,7 @@ class Mascota {
         return $data;
     }
 
-        public function insertar($data) {
+    public function insertar($data) {
         $nombre = htmlentities($data["nombre"]);
         $tipo = htmlentities($data["tipo"]);
         $sexo = htmlentities($data["sexo"]);
