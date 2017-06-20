@@ -13,5 +13,18 @@ switch ($_REQUEST["f"]) {
             echo $e->getMessage();
         }
         break;
+    case 2:
+        $data = $oUsu->validarAcceso($_POST);
+        if(sizeof($data) > 0) {
+            $ok = true;
+            $msg = "Acceso Autorizado";
+            $data = "";
+        } else {
+            $ok = false;
+            $msg = "Usuario o Contraseña Incorrectos";
+            $data = "";
+        }
+        echo json_encode(array("success" => $ok, "msg" => $msg, "data" => $data));
+        break;
 }
 ?>
