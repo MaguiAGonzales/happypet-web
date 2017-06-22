@@ -13,16 +13,18 @@ switch ($_REQUEST["f"]) {
             echo $e->getMessage();
         }
         break;
-    case 10:
-        try {
-            if (!$oUsu->validar($_POST)) {
-                header("HTTP/1.1 420 Usuario o Contraseña Incorrecto");
-            }else{
-                http_response_code(200);
-            }
-        } catch (Exception $e) {
-            header("HTTP/1.1 420 Usuario o Contraseña Incorrecto.");
+    case 2:
+        $data = $oUsu->validarAcceso($_POST);
+        if(sizeof($data) > 0) {
+            $ok = true;
+            $msg = "Acceso Autorizado";
+            $data = "";
+        } else {
+            $ok = false;
+            $msg = "Usuario o Contraseña Incorrectos";
+            $data = "";
         }
-
+        echo json_encode(array("success" => $ok, "msg" => $msg, "data" => $data));
+        break;
 }
 ?>
