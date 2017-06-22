@@ -1,4 +1,18 @@
+ function getBase64(file) {
+   var reader = new FileReader();
+   reader.readAsDataURL(file);
+   reader.onload = function () {
+     console.log(reader.result);
+   };
+   reader.onerror = function (error) {
+     console.log('Error: ', error);
+   };
+   return reader.result;
+}
+
 $(function () {
+   
+
     var mMas = $("#mMascota");
     var fMas = $("#fMascota");
     
@@ -91,23 +105,42 @@ $(function () {
     });
 
     $("#btnGuardarMascota").on("click",function(){
-        con = $("#fMascota").parents(".modal-content");
-        con.waitMe({ text : 'Guardando Mascota...' });
+        //obtiene la foto
+        var imgAvatar = $("#avatar-1")[0].files[0];
+        
+        // para convertir a base 64
+        var reader = new FileReader();         
+        reader.onload = function (re) {
+            var img64 = re.target.result;
+            img64 = img64.split(',')[1];
+            
+            con = $("#fMascota").parents(".modal-content");
+            con.waitMe({ text : 'Guardando Mascota...' });
 
-        var data = fMas.serializeArray();
-        data.push({name: 'f', value: $("#tbId").val()==0 ? 2 :3 });
+            var data = fMas.serializeArray();
+            data.push({name: 'f', value: $("#tbId").val()==0 ? "setImage" :3 });
+            data.push({name: 'adoptado', value: 0 });
+            data.push({name: 'imagen', value: img64});
 
-        $.post("funciones/admin_cliente.php", data, function(d) {
-            if (!d.success) {
-                swal({title: d.msg, type: "error"});
-            }
-            else {
-                toastr["success"](d.msg);
-                mMas.modal('hide');
-                dtMas.ajax.reload();
-            }
-            con.waitMe('hide');
-        },'json');
+            $.post("funciones/admin_mascota.php", data, function(d) {
+                if (!d.success) {
+                    toastr["error"](d.msg);
+                }
+                else {
+                    toastr["success"](d.msg);
+                    mMas.modal('hide');
+                    dtMas.ajax.reload();
+                }
+                con.waitMe('hide');
+            },'json');
+            
+        };        
+        reader.onerror = function (error) {
+          console.log('Error: ', error);
+        };
+        
+        reader.readAsDataURL(imgAvatar);
+        
     });
 
     dtMas.on('click', '.dt-btn-eliminar', function () {
@@ -131,12 +164,33 @@ $(function () {
     });
 
     mMas.on('shown.bs.modal', function (e) {
-        $("#tbNombre").focus()
+        
+        $("#tbNombre").focus();
     })
     mMas.on('hidden.bs.modal', function (e) {
         $('#fMascota')[0].reset();
+        $('#avatar-1').fileinput('refresh');
         con = $("#fMascota").parents(".modal-content");
         con.waitMe('hide');
     })
+    
+    //--------------------------------
+ 
+    $("#avatar-1").fileinput({
+        overwriteInitial: true,
+        maxFileSize: 2500,
+        showClose: false,
+        showCaption: false,
+        browseLabel: '',
+        removeLabel: '',
+        browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+        removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+        removeTitle: 'Quitar Imagen',
+        elErrorContainer: '#kv-avatar-errors-1',
+        msgErrorClass: 'alert alert-block alert-danger',
+        defaultPreviewContent: '<img src="img/logo.png" alt="Your Avatar" style="width:120px">',
+        layoutTemplates: {main2: '{preview} {remove} {browse}'},
+        allowedFileExtensions: ["jpg", "png", "gif"]
+    });
 
 });

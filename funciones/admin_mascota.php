@@ -33,13 +33,13 @@ switch ($_REQUEST["f"]) {
         
         break;
     case 3:
-       $idInsetado = $oMas->insertardemo($_GET);
-        if ($idInsetado > 0) {
+       $ac = $oMas->actualizar($_POST);
+        if ($ac > 0) {
             $ok = true;
-            $msg = "Registrado correctamente.";
-        } else {
+            $msg = "Actualizado correctamente.";
+        } else{
             $ok = false;
-            $msg = "Error al insertar el registro. Inténtelo luego";
+            $msg = "Error al actualizar el registro. Inténtelo luego";
         }
         echo json_encode(array("success" => $ok, "msg" => $msg));
         break;
