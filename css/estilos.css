@@ -12,8 +12,8 @@
     width: auto !important;
 }
 .paginate_button a{
-     padding: 3px 8px !important;
- }
+    padding: 3px 8px !important;
+}
 
 .btn-refrescar{
     margin-right: 6px;
@@ -33,4 +33,40 @@
 
 .btn-agregar{
     color:#FFF;
+}
+
+/*  ------------------------------ */
+
+.tipo-denuncias .thumbnail{
+    position: relative;
+    overflow: hidden;
+}
+.tipo-denuncias img {
+    max-width: 100%;  
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.tipo-denuncias img:hover {
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.listado .thumbnail{
+    position: relative;
+    overflow: hidden;
+}
+.listado img {
+    max-width: 100%;  
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.listado img:hover {
+    -moz-transform: scale(1.06);
+    -webkit-transform: scale(1.06);
+    transform: scale(1.06);
+    cursor: pointer;
 }
