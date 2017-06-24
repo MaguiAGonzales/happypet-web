@@ -5,6 +5,7 @@
         <title>Mis Mascotas ! SV</title>
         <?php include_once("./sis_css.php"); ?>
         <link rel="stylesheet" href="css/fileinput.min.css">
+        <link rel="stylesheet" href="css/lightbox.min.css">
         <style>
             .kv-avatar .krajee-default.file-preview-frame,.kv-avatar .krajee-default.file-preview-frame:hover {
                 margin: 0;
@@ -120,6 +121,7 @@
         <?php include_once("sis_js.php"); ?>
         
         <script type="text/javascript" src="js/fileinput.min.js"></script>
+        <script type="text/javascript" src="js/mini-lightbox.min.js"></script>
         <script type="text/javascript" src="js/mismascotas.js"></script>
         
     </body>

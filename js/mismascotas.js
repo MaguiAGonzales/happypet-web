@@ -1,18 +1,4 @@
- function getBase64(file) {
-   var reader = new FileReader();
-   reader.readAsDataURL(file);
-   reader.onload = function () {
-     console.log(reader.result);
-   };
-   reader.onerror = function (error) {
-     console.log('Error: ', error);
-   };
-   return reader.result;
-}
-
 $(function () {
-   
-
     var mMas = $("#mMascota");
     var fMas = $("#fMascota");
     
@@ -49,7 +35,7 @@ $(function () {
         columns: [
             { "data": "id", "visible": false},
             { "data": "imagen", orderable: false, "render": function(data, type, row) {
-                return '<img src="data:image/jpeg;base64,'+data+'" width="90" class="img-bordered-sm" />';
+                return '<img src="data:image/jpeg;base64,'+data+'" width="90" class="img-bordered-sm" data-lightbox="' + row.id + '" data-title="' + row.nombre + '" />';
             }},
             { "data": "nombre"},
             { "data": "tipo_mascota", className:"hidden-xs"  },
@@ -57,7 +43,15 @@ $(function () {
             { "data": "ano_nacimiento"},
             { "data": null, "orderable": false}
         ],
-        order: [[0, "desc"]]
+        order: [[0, "desc"]],
+        initComplete: function (settings, json) {
+            new MiniLightbox(".img-bordered-sm");
+            new MiniLightbox({
+                selector: ".img-bordered-sm"
+                // the common container where the images are appended
+              , delegation: "html"
+            });
+        }
     });
 
     $("#tbR").css("display","inline").html('<button type="button" class="btn btn-default btn-sm btn-refrescar" ><span class="glyphicon glyphicon-refresh" id="btnRefrescar"></span>');
@@ -65,6 +59,11 @@ $(function () {
     $("#tbR").on('click', '.btn-refrescar', function () {
         dtMas.ajax.reload(null, false);
     });
+
+//    $("#dtMascotas").on('click', '.img-bordered-sm', function () {
+////        console.log($(this).prop("src"))
+//        lightbox.start($(this).prop("src"));
+//    });
 
     dtMas.on('click', '.dt-btn-editar', function () {
 //        var fila = dtCli.row($(this).parents('tr')).data();
