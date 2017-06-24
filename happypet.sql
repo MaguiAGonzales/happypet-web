@@ -24,15 +24,15 @@ DROP TABLE IF EXISTS `adopciones`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `adopciones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `estado` varchar(20) NOT NULL,
-  `termino_condiciones` bit(1) NOT NULL,
+  `estado` char(1) NOT NULL DEFAULT 'P',
+  `termino_condiciones` tinyint(1) NOT NULL,
   `id_horario` int(11) DEFAULT NULL,
   `id_mascota` int(11) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   `id_test` int(11) DEFAULT NULL,
   `id_visita_adopcion` int(11) DEFAULT NULL,
-  `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_mascota` (`id_mascota`),
   KEY `id_usuario` (`id_usuario`),
@@ -44,7 +44,7 @@ CREATE TABLE `adopciones` (
   CONSTRAINT `adopciones_ibfk_6` FOREIGN KEY (`id_horario`) REFERENCES `horario` (`id`),
   CONSTRAINT `adopciones_ibfk_7` FOREIGN KEY (`id_test`) REFERENCES `test` (`id`),
   CONSTRAINT `adopciones_ibfk_8` FOREIGN KEY (`id_visita_adopcion`) REFERENCES `visita_adopcion` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,6 +53,7 @@ CREATE TABLE `adopciones` (
 
 LOCK TABLES `adopciones` WRITE;
 /*!40000 ALTER TABLE `adopciones` DISABLE KEYS */;
+INSERT INTO `adopciones` VALUES (1,'P',0,NULL,15,1,NULL,NULL,NULL,'2017-06-24 08:18:22'),(2,'A',1,NULL,18,2,NULL,NULL,NULL,'2017-06-24 08:46:04');
 /*!40000 ALTER TABLE `adopciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,7 +106,7 @@ CREATE TABLE `denuncia` (
   PRIMARY KEY (`id`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `denuncia_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=313 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,7 +227,7 @@ CREATE TABLE `mascotas` (
   PRIMARY KEY (`id`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `mascotas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -324,9 +325,26 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Karina','Cabrera','Cajamarca','ikarina@gmail.com',NULL,'img/user7-128x128.jpg','202cb962ac59075b964b07152d234b70','12345678',NULL,NULL,'992362541','Jr. del comercio N° 214','Cerca la plaza de Armas',1,'2017-06-01 21:49:35','2017-06-01 21:49:35'),(2,'Karina','Cabrera','Cajamarca','ikarina1@gmail.com',NULL,'ruta-temporal/al/directorio/image.jpg','$2y$10$ytjLQDKxHnwOVPUuOoI5F.aD6JnUSoz7lXqmKTp8LvSvhCotLXcre','15963214',NULL,NULL,'975465233','Av. San Martín 1265','Por el grifo Huacaloma',0,'2017-06-01 21:51:33','2017-06-01 21:51:33'),(3,'Karina','Cabrera','Cajamarca','ikarina2@gmail.com',NULL,'ruta-temporal/al/directorio/image.jpg','$2y$10$XIVDX8d7Pfn5fBkuVnY6g.5CH6vDlfRQsWAKwx3c.kgUq87S0O1nm','41526385',NULL,NULL,'976555555','Jr. Los Andes N° 564','por el parque las flores',0,'2017-06-01 22:06:33','2017-06-01 22:06:33');
+INSERT INTO `usuario` VALUES (1,'Karina','Cabrera','Cajamarca','ikarina@gmail.com',NULL,'img/user7-128x128.jpg','202cb962ac59075b964b07152d234b70','12345678',NULL,NULL,'992362541','Jr. del comercio N° 214','Cerca la plaza de Armas',1,'2017-06-01 21:49:35','2017-06-01 21:49:35'),(2,'José','Andrade Muñoz','Cajamarca','jose@upn.com',NULL,'ruta-temporal/al/directorio/image.jpg','900150983cd24fb0d6963f7d28e17f72','15963214',NULL,NULL,'975465233','Av. San Martín 1265','Por el grifo Huacaloma',0,'2017-06-01 21:51:33','2017-06-01 21:51:33'),(3,'Karina','Cabrera','Cajamarca','ikarina2@gmail.com',NULL,'ruta-temporal/al/directorio/image.jpg','$2y$10$XIVDX8d7Pfn5fBkuVnY6g.5CH6vDlfRQsWAKwx3c.kgUq87S0O1nm','41526385',NULL,NULL,'976555555','Jr. Los Andes N° 564','por el parque las flores',0,'2017-06-01 22:06:33','2017-06-01 22:06:33');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `v_adopcion`
+--
+
+DROP TABLE IF EXISTS `v_adopcion`;
+/*!50001 DROP VIEW IF EXISTS `v_adopcion`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `v_adopcion` AS SELECT 
+ 1 AS `id`,
+ 1 AS `imagen`,
+ 1 AS `nombre`,
+ 1 AS `usuario`,
+ 1 AS `fecha`,
+ 1 AS `estado`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `visita_adopcion`
@@ -392,6 +410,24 @@ LOCK TABLES `visita_mensual` WRITE;
 /*!40000 ALTER TABLE `visita_mensual` DISABLE KEYS */;
 /*!40000 ALTER TABLE `visita_mensual` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Final view structure for view `v_adopcion`
+--
+
+/*!50001 DROP VIEW IF EXISTS `v_adopcion`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `v_adopcion` AS select `ado`.`id` AS `id`,`mas`.`imagen` AS `imagen`,`mas`.`nombre` AS `nombre`,concat(`usu`.`nombre`,' ',`usu`.`apellidos`) AS `usuario`,`ado`.`created_at` AS `fecha`,`ado`.`estado` AS `estado` from ((`adopciones` `ado` join `mascotas` `mas` on((`ado`.`id_mascota` = `mas`.`id`))) join `usuario` `usu` on((`ado`.`id_usuario` = `usu`.`id`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -402,4 +438,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-23 16:55:22
+-- Dump completed on 2017-06-24 15:12:14
