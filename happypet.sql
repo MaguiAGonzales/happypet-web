@@ -131,13 +131,13 @@ CREATE TABLE `eventos` (
   `titulo` varchar(100) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
   `fecha` date NOT NULL,
-  `hora` varchar(255) NOT NULL,
+  `hora` time NOT NULL,
   `lugar` varchar(255) NOT NULL,
   `referencia` varchar(255) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,6 +146,7 @@ CREATE TABLE `eventos` (
 
 LOCK TABLES `eventos` WRITE;
 /*!40000 ALTER TABLE `eventos` DISABLE KEYS */;
+INSERT INTO `eventos` VALUES (1,'Campaña de Adopción','Se estará; realizando una campaña de adopción, esperamos contar con su apoyo. \r\nLos esperamos!','2017-06-25','10:00:00','Plazuela La Recoleta','en la Av. los H&eacute;roes','2017-05-24 19:27:53','2017-06-26 10:22:01'),(2,'Campaña de Esterilización','Llevar asus mascotas devidamente  identificadas y con sus correa','2017-06-24','09:30:59','Plataforma Bomberos de Cajamarca','antes de Sucre','2017-05-20 19:34:01','2017-06-26 09:09:24'),(3,'Venta de Postres','Venta de Torta, Helado','2017-06-20','15:45:00','Open Plaza','si el centro comercia','2017-05-17 19:45:44','2017-06-26 09:09:24');
 /*!40000 ALTER TABLE `eventos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,7 +228,7 @@ CREATE TABLE `mascotas` (
   PRIMARY KEY (`id`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `mascotas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -438,4 +439,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-24 15:12:14
+-- Dump completed on 2017-06-26 10:23:10
