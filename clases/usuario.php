@@ -2,6 +2,7 @@
 
 require_once("cnx.php");
 date_default_timezone_set("America/Lima");
+mb_internal_encoding('UTF-8');
 
 session_start();
 

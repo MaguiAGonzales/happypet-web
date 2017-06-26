@@ -4,6 +4,7 @@
 <script type="text/javascript"  src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <script type="text/javascript"  src="plugins/fastclick/fastclick.js"></script>
 <script type="text/javascript"  src="js/adminlte.min.js"></script>
+<script type="text/javascript"  src="js/funciones.js"></script>
 
 <script type="text/javascript"  src="js/jquery.datatables.min.js"></script>
 <script type="text/javascript"  src="js/jquery.datatables.default.js"></script>
@@ -15,6 +16,7 @@
 <script type="text/javascript"  src="js/bootbox.min.js"></script>
 <script type="text/javascript"  src="js/waitme.min.js"></script>
 <script type="text/javascript"  src="js/toastr.min.js"></script>
+<script type="text/javascript"  src="js/BootstrapMenu.min.js"></script>
 
 <script type="text/javascript">
     toastr.options = {

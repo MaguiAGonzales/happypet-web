@@ -5,7 +5,9 @@
         <title>Adopciones</title>
         <?php include_once("./sis_css.php"); ?>
         <style type="text/css">
-            
+            #fAdopcion legend{
+                cursor: pointer;
+            }
         </style>
     </head>
     <body class="hold-transition skin-blue-light fixed sidebar-mini">
@@ -108,10 +110,10 @@
                                             </div>
                                         </div>
                                     </section>
-
                                 </fieldset>
                                 <fieldset class="form-group">
                                     <legend>Proceso de Adopción</legend>
+
                                 </fieldset>
                             </form>
                         </div>
