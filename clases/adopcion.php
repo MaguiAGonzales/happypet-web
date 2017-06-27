@@ -5,7 +5,7 @@ mb_internal_encoding('UTF-8');
 
 session_start();
 
-class Mascota {
+class Adopcion {
 
     private $_misql;
     public $usuario;
@@ -22,9 +22,9 @@ class Mascota {
 
         extract($postData);
 
-        $aColumns = array('id', 'imagen', 'nombre', 'tipo_mascota', 'sexo', 'ano_nacimiento');
+        $aColumns = array('id', 'imagen', 'nombre', 'usuario', 'fecha', 'estado');
         $sIndexColumn = 'id';
-        $sTable = 'mascotas';
+        $sTable = 'v_adopcion';
 
         $gaSql['user']     = $bd_usuario;
         $gaSql['password'] = $bd_clave;

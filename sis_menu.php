@@ -49,15 +49,23 @@
 
             <aside class="main-sidebar">
                 <section class="sidebar">
-                    <ul class="sidebar-menu" data-widget="tree">                     
-                        
-                        <li class="active"><a href="index.php"><i class="fa fa-home text-blue"></i> <span>Inicio</span></a></li>
+                    <ul class="sidebar-menu" data-widget="tree">                       
+                        <li class=""><a href="index.php"><i class="fa fa-home text-blue"></i> <span>Inicio</span></a></li>
                         <li><a href="mismascotas.php"><i class="fa fa-angellist "></i> <span>Mis Mascotas</span></a></li>
                         <li><a href="adopciones.php"><i class="fa fa-heart"></i> <span>Adopciones</span></a></li>
-                        <li><a href="notificaciones.php"><i class="fa fa-bell"></i> <span>Alertas</span></a></li>
-                        <li><a href="denuncias.php"><i class="fa fa-legal"></i> <span>Denuncias</span></a></li>
-                        <li><a href="perdidas.pgp"><i class="fa fa-ban"></i> <span>Extraviados</span></a></li>
-                        <li><a href="perdidas.pgp"><i class="fa fa-calendar"></i> <span>Eventos</span></a></li>
+                        <!--<li><a href="notificaciones.php"><i class="fa fa-bell"></i> <span>Notificaciones</span></a></li>-->
+                        <li class="treeview active">
+                            <a href="#">
+                                <i class="fa fa-bullhorn"></i> <span>Notificaciones</span>
+                                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="denuncias.php"><i class="fa fa-legal"></i> <span>Denuncias</span></a></li>
+                                <li><a href="extraviados.php"><i class="fa fa-exclamation-triangle"></i> <span>Extraviados</span></a></li>
+                                <li><a href="encontrados.php"><i class="fa fa-eye"></i> <span>Encontrados</span></a></li>
+                            </ul>
+                        </li>                                                
+                        <li><a href="eventos.php"><i class="fa fa-calendar"></i> <span>Eventos</span></a></li>
                     </ul>
                 </section>
             </aside>

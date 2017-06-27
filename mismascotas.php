@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Mis Mascotas ! SV</title>
+        <title>Mis Mascotas | SV</title>
         <?php include_once("./sis_css.php"); ?>
         <link rel="stylesheet" href="css/fileinput.min.css">
         <link rel="stylesheet" href="css/lightbox.min.css">
@@ -34,7 +34,7 @@
                 <section class="content">               
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Mis Mascotas</h3>
+                            <h3 class="box-title">MIS MASCOTAS</h3>
                         </div>
                         <div class="box-body">
                             <div class="container-fluid">
