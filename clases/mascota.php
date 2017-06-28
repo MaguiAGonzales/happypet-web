@@ -24,7 +24,7 @@ class Mascota {
 
         $aColumns = array('id', 'imagen', 'nombre', 'tipo_mascota', 'sexo', 'ano_nacimiento');
         $sIndexColumn = 'id';
-        $sTable = 'mascotas';
+        $sTable = 'v_mascotas_disponibles';
 
         $gaSql['user']     = $bd_usuario;
         $gaSql['password'] = $bd_clave;
@@ -158,14 +158,16 @@ class Mascota {
         $tipo = htmlentities($data["tipo"]);
         $sexo = htmlentities($data["sexo"]);
         $anio = htmlentities($data["anio"]);
-        $particilaridades = htmlentities($data["particularidades"]);
-        $salud = htmlentities($data["salud"]);
+        //$particilaridades = htmlentities($data["particularidades"]);
+        $particilaridades = $data["particularidades"];
+        //$salud = htmlentities($data["salud"]);
+        $salud = $data["salud"];
         $adoptado = htmlentities($data["adoptado"]);
         $imagen = htmlentities($data["imagen"]);
         
         $fechaActual = date("Y-m-d H:i:s");
         $this->_misql->conectar();
-        $this->_misql->sql = "INSERT INTO mascotas(nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento,  es_adoptado, imagen,id_usuario) ".
+        $this->_misql->sql = "INSERT INTO mascotas(nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento,  es_adoptado, imagen,id_usuario,adoptable) ".
             "VALUES(" .
             "'" . $nombre ."', ".
             "'" . $tipo ."', ".
@@ -175,7 +177,7 @@ class Mascota {
             $anio . ", " .
             "'" . $adoptado ."', ".
             "'" . $imagen ."', ".
-            "1)";
+            "1,1)";
         //echo $this->_misql->sql;
         $this->_misql->ejecutar();
         if($this->_misql->numeroAfectados())
