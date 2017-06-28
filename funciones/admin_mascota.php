@@ -32,6 +32,19 @@ switch ($_REQUEST["f"]) {
         echo json_encode($data);      
         
         break;
+    case "disponibles":
+        $data = $oMas->listarDisponibles($_POST);
+        if (sizeof($data) > 0) {
+            $ok = true;
+            $data = $data;
+        } else {
+            $ok = false;
+            $data = "";
+        }
+        header('Content-Type: application/json;charset=utf-8');        
+        echo json_encode($data);      
+        
+        break;
     case 3:
        $ac = $oMas->actualizar($_POST);
         if ($ac > 0) {

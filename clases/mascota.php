@@ -153,6 +153,15 @@ class Mascota {
         return $data;
     }
 
+    public function listarDisponibles($data){
+        $this->_misql->sql = "SELECT id, nombre, ano_nacimiento, imagen FROM v_mascotas_disponibles ORDER BY id desc";
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data;
+    }
+
     public function insertar($data) {
         $nombre = htmlentities($data["nombre"]);
         $tipo = htmlentities($data["tipo"]);
