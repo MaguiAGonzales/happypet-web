@@ -5,7 +5,16 @@
         <title>Salvando Vidas</title>
         <?php include_once("./sis_css.php"); ?>
         <style type="text/css">
-            
+            .listadoAdopciones{
+                min-height: 70px;
+            }
+            .listadoAdopciones .foto{
+                width: 120px;
+                height: 120px;
+            }
+            .listadoAdopciones .nombre{
+                text-transform: capitalize;
+            }
         </style>
     </head>
     <body class="hold-transition skin-blue-light fixed sidebar-mini">
@@ -29,32 +38,7 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body no-padding">
-                                    <ul class="users-list clearfix">
-                                        
-                                        <li>
-                                            <img src="img/user8-128x128.jpg" alt="User Image">
-                                            <a class="users-list-name" href="#">Norman</a>
-                                            <span class="users-list-date">Yesterday</span>
-                                        </li>
-                                        <li>
-                                            <img src="img/user7-128x128.jpg" alt="User Image">
-                                            <a class="users-list-name" href="#">Jane</a>
-                                            <span class="users-list-date">12 Jan</span>
-                                        </li>
-                                        
-                                        <li>
-                                            <img src="img/user2-160x160.jpg" alt="User Image">
-                                            <a class="users-list-name" href="#">Alexander</a>
-                                            <span class="users-list-date">13 Jan</span>
-                                        </li>
-                                        <li>
-                                            <img src="img/user5-128x128.jpg" alt="User Image">
-                                            <a class="users-list-name" href="#">Sarah</a>
-                                            <span class="users-list-date">14 Jan</span>
-                                        </li>
-                                        
-                                    </ul>
-                                    <!-- /.users-list -->
+                                    <ul class="users-list clearfix listadoAdopciones"></ul>
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer text-center">
@@ -176,10 +160,22 @@
                 </section>
             </div>
 
+            <div id="plantillaAdopciones" style="display: none">
+                <li>
+                    <img src="" class="foto">
+                    <a class="users-list-name nombre" href="#"></a>
+                    <span class="users-list-date anio"></span>
+                </li>
+            </div>
+
+            
+
             <?php include_once("sis_pie.php"); ?>
 
         </div>
         <?php include_once("./sis_js.php"); ?>
+        <script type="text/javascript" src="js/index.js"></script>
+
 
     </body>
 </html>

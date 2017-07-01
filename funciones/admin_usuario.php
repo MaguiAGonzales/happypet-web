@@ -6,8 +6,13 @@ $oUsu = new Usuario();
 switch ($_REQUEST["f"]) {
     case 1:
         try {
-            if (!$oUsu->validar($_POST)) {
-                echo 'Error: Usuario o Clave Incorrectos';
+            switch ($oUsu->validar($_POST)) {
+                case 0:
+                    echo 'Error: Usuario o Clave Incorrectos';                    
+                    break;
+                case -1:
+                    echo 'Error: Solo se permite el acceso a usuarios Administradores';
+                    break;
             }
         } catch (Exception $e) {
             echo $e->getMessage();

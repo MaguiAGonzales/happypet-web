@@ -25,11 +25,14 @@ class Usuario {
         $this->_misql->ejecutar();
         if ($this->_misql->numeroRegistros() > 0) {
             $datos = $this->_misql->devolverArreglo();
-            
-            $_SESSION = $datos[0];
-            
             $this->_misql->liberarYcerrar();
-            return 1;
+
+            if($datos[0]["admin"] == 1){
+                $_SESSION = $datos[0];
+                return 1;
+            }else{
+                return -1;
+            }    
         }
         else
             return 0;

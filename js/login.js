@@ -33,8 +33,8 @@ $(document).ready(function(){
                 }
                 else{
                     $(".card-container").waitMe('hide');
-
-                    bootbox.alert(data.toString(), function(){
+                    msje = data.toString().split(": ")[1];
+                    bootbox.alert(msje, function(){
                         setTimeout(function(){ $('#tbClave').select(); }, 200);
                         return;
                     })
