@@ -60,11 +60,6 @@ $(function () {
         dtMas.ajax.reload(null, false);
     });
 
-//    $("#dtMascotas").on('click', '.img-bordered-sm', function () {
-////        console.log($(this).prop("src"))
-//        lightbox.start($(this).prop("src"));
-//    });
-
     dtMas.on('click', '.dt-btn-editar', function () {
 //        var fila = dtCli.row($(this).parents('tr')).data();
 //        $("#tbDniPro").attr("data-remote","funciones/admin_cliente.php?f=20&id=" + fila.id);
@@ -119,7 +114,11 @@ $(function () {
             var data = fMas.serializeArray();
             data.push({name: 'f', value: $("#tbId").val()==0 ? "setImage" :3 });
             data.push({name: 'adoptado', value: 0 });
+            data.push({name: 'adoptable', value: 1 });
+            data.push({name: 'id_usuario', value: $("#tbIdUsuario").val() });
             data.push({name: 'imagen', value: img64});
+
+            console.log(data);
 
             $.post("funciones/admin_mascota.php", data, function(d) {
                 if (!d.success) {
@@ -137,6 +136,8 @@ $(function () {
         reader.onerror = function (error) {
           console.log('Error: ', error);
         };
+
+        console.log(imgAvatar);
         
         reader.readAsDataURL(imgAvatar);
         
@@ -163,9 +164,9 @@ $(function () {
     });
 
     mMas.on('shown.bs.modal', function (e) {
-        
         $("#tbNombre").focus();
     })
+
     mMas.on('hidden.bs.modal', function (e) {
         $('#fMascota')[0].reset();
         $('#avatar-1').fileinput('refresh');

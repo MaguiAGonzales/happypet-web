@@ -56,7 +56,7 @@
                         <!--<li><a href="notificaciones.php"><i class="fa fa-bell"></i> <span>Notificaciones</span></a></li>-->
                         <li class="treeview active">
                             <a href="#">
-                                <i class="fa fa-bullhorn"></i> <span>Notificaciones</span>
+                                <i class="fa fa-bullhorn"></i> <span>Alertas</span>
                                 <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                             </a>
                             <ul class="treeview-menu">

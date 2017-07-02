@@ -5,14 +5,14 @@
         <title>Salvando Vidas</title>
         <?php include_once("./sis_css.php"); ?>
         <style type="text/css">
-            .listadoAdopciones{
-                min-height: 70px;
+            .lista{
+                min-height: 65px;
             }
-            .listadoAdopciones .foto{
+            .lista .foto{
                 width: 120px;
                 height: 120px;
             }
-            .listadoAdopciones .nombre{
+            .lista .nombre{
                 text-transform: capitalize;
             }
         </style>
@@ -36,18 +36,14 @@
                                         </button>
                                     </div>
                                 </div>
-                                <!-- /.box-header -->
                                 <div class="box-body no-padding">
-                                    <ul class="users-list clearfix listadoAdopciones"></ul>
+                                    <ul class="users-list clearfix lista listado-adopciones"></ul>
                                 </div>
-                                <!-- /.box-body -->
                                 <div class="box-footer text-center">
                                     <a href="adopciones.php" class="uppercase">Ver todos</a>
                                 </div>
-                                <!-- /.box-footer -->
                             </div>
-                            <!--/.box -->
-                        </div>                        
+                        </div>
                     </div> 
                     
                     <div class="row">
@@ -62,39 +58,13 @@
                                         </button>
                                     </div>
                                 </div>
-                                <!-- /.box-header -->
                                 <div class="box-body no-padding">
-                                    <ul class="users-list clearfix">
-                                        <li>
-                                            <img src="img/user2-160x160.jpg" alt="User Image">
-                                            <a class="users-list-name" href="#">Alexander</a>
-                                            <span class="users-list-date">13 Jan</span>
-                                        </li>
-                                        <li>
-                                            <img src="img/user5-128x128.jpg" alt="User Image">
-                                            <a class="users-list-name" href="#">Sarah</a>
-                                            <span class="users-list-date">14 Jan</span>
-                                        </li>
-                                        <li>
-                                            <img src="img/user4-128x128.jpg" alt="User Image">
-                                            <a class="users-list-name" href="#">Nora</a>
-                                            <span class="users-list-date">15 Jan</span>
-                                        </li>
-                                        <li>
-                                            <img src="img/user3-128x128.jpg" alt="User Image">
-                                            <a class="users-list-name" href="#">Nadia</a>
-                                            <span class="users-list-date">15 Jan</span>
-                                        </li>
-                                    </ul>
-                                    <!-- /.users-list -->
+                                    <ul class="users-list clearfix lista listado-extraviados"></ul>
                                 </div>
-                                <!-- /.box-body -->
                                 <div class="box-footer text-center">
                                     <a href="extraviados.php" class="uppercase">Ver todos</a>
                                 </div>
-                                <!-- /.box-footer -->
                             </div>
-                            <!--/.box -->
                         </div>
                         
                         <div class="col-md-6">
@@ -160,7 +130,7 @@
                 </section>
             </div>
 
-            <div id="plantillaAdopciones" style="display: none">
+            <div id="plantilla" style="display: none">
                 <li>
                     <img src="" class="foto">
                     <a class="users-list-name nombre" href="#"></a>

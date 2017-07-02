@@ -58,6 +58,8 @@
                 </section>
             </div>
         </div>
+
+        <input type="hidden" id="tbIdUsuario" value="<?php echo $_SESSION["id"] ?>">
         
         <div id="mMascota" class="modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">

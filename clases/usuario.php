@@ -46,14 +46,17 @@ class Usuario {
         //echo $this->_misql->sql;
         $this->_misql->conectar();
         $this->_misql->ejecutar();
-        if ($this->_misql->numeroRegistros() > 0) {
-            $datos = $this->_misql->devolverArreglo();
-            $this->_misql->liberarYcerrar();
-
-            return $datos[0];
-        }
-        else
-            return array();
+//        if ($this->_misql->numeroRegistros() > 0) {
+//            $datos = $this->_misql->devolverArreglo();
+//            $this->_misql->liberarYcerrar();
+//
+//            return $datos[0];
+//        }
+//        else
+//            return array();
+        $datos = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $datos;
     }
     
 }

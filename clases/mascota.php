@@ -145,16 +145,9 @@ class Mascota {
     }
     
     public function listar($data){
-        $this->_misql->sql = "SELECT id, nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento, imagen, id_usuario, es_adoptado FROM mascotas ORDER BY id desc";
-        $this->_misql->conectar();
-        $this->_misql->ejecutar();
-        $data = $this->_misql->devolverArreglo();
-        $this->_misql->liberarYcerrar();
-        return $data;
-    }
-
-    public function listarDisponibles($data){
-        $this->_misql->sql = "SELECT id, nombre, ano_nacimiento, imagen FROM v_mascotas_disponibles ORDER BY id desc";
+        $filtro = isset($data["id_usuario"])? " WHERE id_usuario=" . $data["id_usuario"] : "";
+        $this->_misql->sql = "SELECT id, nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento, imagen, id_usuario, es_adoptado ".
+            "FROM mascotas $filtro ORDER BY id desc";
         $this->_misql->conectar();
         $this->_misql->ejecutar();
         $data = $this->_misql->devolverArreglo();
@@ -173,7 +166,9 @@ class Mascota {
         $salud = $data["salud"];
         $adoptado = htmlentities($data["adoptado"]);
         $imagen = htmlentities($data["imagen"]);
-        
+        $id_usuario = $data["id_usuario"];
+        $adoptable = $data["adoptable"];
+
         $fechaActual = date("Y-m-d H:i:s");
         $this->_misql->conectar();
         $this->_misql->sql = "INSERT INTO mascotas(nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento,  es_adoptado, imagen,id_usuario,adoptable) ".
@@ -186,7 +181,8 @@ class Mascota {
             $anio . ", " .
             "'" . $adoptado ."', ".
             "'" . $imagen ."', ".
-            "1,1)";
+            $id_usuario .", ".
+            $adoptable . ")";
         //echo $this->_misql->sql;
         $this->_misql->ejecutar();
         if($this->_misql->numeroAfectados())
@@ -196,7 +192,7 @@ class Mascota {
         $this->_misql->cerrar();
         return $idInsertado;
     }
-    
+
     public function insertardemo($data) {
         $nombre = htmlentities($data["nombre"]);
         $tipo = htmlentities($data["tipo"]);

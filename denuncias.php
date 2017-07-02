@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Salvando Vidas</title>
+        <title>Denuncias</title>
         <?php include_once("./sis_css.php"); ?>
         <style type="text/css">
             

@@ -7,7 +7,19 @@ switch ($_REQUEST["f"]) {
     case 1: 
         echo $oAdo->listarDataTable($_POST);
         break;
+    case "listar":
+        $data = $oAdo->listar($_REQUEST);
+        header('Content-Type: application/json;charset=utf-8');
+        echo json_encode($data);
 
+        break;
+
+    case "disponibles":
+        $data = $oAdo->listarDisponibles($_REQUEST);
+        header('Content-Type: application/json;charset=utf-8');
+        echo json_encode($data);
+
+        break;
     case 3:
        $ac = $oAdo->actualizar($_POST);
         if ($ac > 0) {

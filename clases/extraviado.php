@@ -5,7 +5,7 @@ mb_internal_encoding('UTF-8');
 
 session_start();
 
-class Denuncia {
+class Extraviado {
 
     private $_misql;
     public $usuario;
@@ -13,21 +13,9 @@ class Denuncia {
     public function __construct() {
         $this->_misql = new MiSQL;
     }
-    
-    public function listarTotales(){
-        $this->_misql->sql = "SELECT tipo, COUNT(id) AS total FROM denuncia GROUP BY tipo";
-        $this->_misql->conectar();
-        $this->_misql->ejecutar();
-        $data = $this->_misql->devolverArreglo();
-        $this->_misql->liberarYcerrar();  
-        return array(
-            $data[0]["tipo"] => $this->ceros($data[0]["total"]) ,
-            $data[1]["tipo"] => $this->ceros($data[1]["total"]) ,
-            $data[2]["tipo"] => $this->ceros($data[2]["total"]));
-    }
-    
-    public function listar($tipo){
-        $this->_misql->sql = "SELECT * FROM denuncia WHERE tipo='". $tipo ."' ORDER BY id desc";
+
+    public function listar(){
+        $this->_misql->sql = "SELECT * FROM v_extraviado WHERE encontrado=0 ORDER BY fecha desc";
         $this->_misql->conectar();
         $this->_misql->ejecutar();
         $data = $this->_misql->devolverArreglo();
@@ -36,7 +24,8 @@ class Denuncia {
     }
     
     public function listarDetalle($id){
-        $this->_misql->sql = "SELECT * FROM v_denuncia WHERE id=$id";
+        $this->_misql->sql = "SELECT de.*, CONCAT(usu.nombre,' ',usu.apellidos) as nombres, usu.dni, usu.direccion, usu.referencia, usu.telefono, usu.correo " . 
+            "FROM denuncia AS de inner JOIN usuario as usu ON de.id_usuario = usu.id WHERE de.id=$id";
         $this->_misql->conectar();
         $this->_misql->ejecutar();
         $data = $this->_misql->devolverArreglo();
