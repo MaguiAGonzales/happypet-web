@@ -143,9 +143,23 @@ class Adopcion {
 
         return json_encode( $output );
     }
-    
+
     public function listar($data){
-        $this->_misql->sql = "SELECT id, nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento, imagen, id_usuario, es_adoptado FROM mascotas ORDER BY id desc";
+        $filtro = (isset($data["id_usuario"]) ? "WHERE id_usuario =" . $data["id_usuario"] : "");
+        $this->_misql->sql = "SELECT * FROM v_adopcion ". $filtro ." ORDER BY id desc";
+//        echo $this->_misql->sql;
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data;
+    }
+
+    public function listarDisponibles($data){
+        $filtro = (isset($data["id_usuario"]) ? "WHERE id_usuario =" . $data["id_usuario"] : "");
+        $this->_misql->sql = "SELECT id, nombre, ano_nacimiento, imagen, tipo_mascota, sexo, particularidades, salud ".
+            "FROM v_mascotas_disponibles ". $filtro ." ORDER BY id desc";
+//        echo $this->_misql->sql;
         $this->_misql->conectar();
         $this->_misql->ejecutar();
         $data = $this->_misql->devolverArreglo();

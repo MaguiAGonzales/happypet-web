@@ -19,17 +19,19 @@ switch ($_REQUEST["f"]) {
         }
         break;
     case 2:
-        $data = $oUsu->validarAcceso($_POST);
+        $data = $oUsu->validarAcceso($_GET);
         if(sizeof($data) > 0) {
             $ok = true;
             $msg = "Acceso Autorizado";
-            $data = "";
+            $data = $data[0];
         } else {
             $ok = false;
             $msg = "Usuario o Contraseña Incorrectos";
             $data = "";
         }
+//        header('Content-Type: application/json;charset=utf-8');
         echo json_encode(array("success" => $ok, "msg" => $msg, "data" => $data));
+//        echo json_encode($data);
         break;
 }
 ?>
