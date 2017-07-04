@@ -157,7 +157,7 @@ class Adopcion {
 
     public function listarDisponibles($data){
         $filtro = (isset($data["id_usuario"]) ? "WHERE id_usuario =" . $data["id_usuario"] : "");
-        $this->_misql->sql = "SELECT id, nombre, ano_nacimiento, imagen, tipo_mascota, sexo ".
+        $this->_misql->sql = "SELECT id, nombre, ano_nacimiento, imagen, tipo_mascota, sexo, particularidades, salud ".
             "FROM v_mascotas_disponibles ". $filtro ." ORDER BY id desc";
 //        echo $this->_misql->sql;
         $this->_misql->conectar();
