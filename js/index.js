@@ -1,7 +1,7 @@
 $(function () {
     var ADO = $(".listado-adopciones");
     ADO.waitMe({ text : 'Cargando' });
-    $.post("funciones/admin_mascota.php", {f:"disponibles"}, function(d) {
+    $.post("funciones/admin_adopcion.php", {f:"disponibles"}, function(d) {
         if (!d) {
             ADO.html("<div class='col-xs-12'>Ninguna mascota disponible para adopción.</div>");
         }else {

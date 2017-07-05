@@ -24,7 +24,25 @@ $(function () {
             { "data": "usuario", className:"hidden-xs"  },
             { "data": "fecha" },
             { "data": "estado", class:"text-center", orderable: false, "render": function(data, type, row) {
-                return '<button type="button" class="btn btn-'+ (data=='P'?"success":"info") +' btn-xs">' + (data=="P"?"En Proceso":"Finalizado") + '</button>';
+                estado = data.substr(0, 1);
+                fase = "";
+                switch(estado) {
+                    case "F":
+                        clase = "success";
+                        etiqueta = "En Proceso";
+                        fase = (data.length > 1) ? "<br><span class='label label-default'> Fase " + data.substr(1, 1) + "</span>" : "";
+                        break;
+                    case "T":
+                        clase = "info";
+                        etiqueta = "Terminado";
+                        break;
+                    case "N":
+                        clase = "danger";
+                        etiqueta = "No Pasó";
+                        break;
+                }
+
+                return '<button type="button" class="btn btn-'+ clase +' btn-xs">' + etiqueta + '</button> '  + fase;
             }},
         ],
         order: [[0, "desc"]]

@@ -33,5 +33,16 @@ switch ($_REQUEST["f"]) {
         echo json_encode(array("success" => $ok, "msg" => $msg, "data" => $data));
 //        echo json_encode($data);
         break;
+
+    case "listar":
+        $data = $oUsu->listar($_REQUEST);
+//        print_r(sizeof($data));
+//        header('Content-Type: application/json;charset=utf-8');
+        if (isset($_REQUEST["id"]))
+            echo json_encode($data[0]);
+        else
+            echo json_encode($data);
+
+        break;
 }
 ?>
