@@ -58,5 +58,15 @@ class Usuario {
         $this->_misql->liberarYcerrar();
         return $datos;
     }
+
+    public function listar($data){
+        $filtro = isset($data["id"])? " WHERE id=" . $data["id"] : "";
+        $this->_misql->sql = "SELECT id, nombre, apellidos, dni, fecha_nacimiento, telefono, direccion, referencia FROM usuario $filtro ORDER BY id desc";
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $datos = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $datos;
+    }
     
 }

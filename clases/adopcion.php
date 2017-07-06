@@ -167,61 +167,47 @@ class Adopcion {
         return $data;
     }
 
-    public function insertar($data) {
-        $nombre = htmlentities($data["nombre"]);
-        $tipo = htmlentities($data["tipo"]);
-        $sexo = htmlentities($data["sexo"]);
-        $anio = htmlentities($data["anio"]);
-        $particilaridades = htmlentities($data["particularidades"]);
-        $salud = htmlentities($data["salud"]);
-        $adoptado = htmlentities($data["adoptado"]);
-        $imagen = htmlentities($data["imagen"]);
-        
+    public function insertarF1($data) {
         $fechaActual = date("Y-m-d H:i:s");
         $this->_misql->conectar();
-        $this->_misql->sql = "INSERT INTO mascotas(nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento,  es_adoptado, imagen,id_usuario) ".
+        $this->_misql->sql = "INSERT INTO horario(lunes, martes, miercoles, jueves, viernes, maniana_ini, maniana_fin, tarde_ini, tarde_fin, created_at) ".
             "VALUES(" .
-            "'" . $nombre ."', ".
-            "'" . $tipo ."', ".
-            "'" . $sexo ."', ".
-            "'" . $particilaridades ."', ".
-            "'" . $salud ."', ".
-            $anio . ", " .
-            "'" . $adoptado ."', ".
-            "'" . $imagen ."', ".
-            "1)";
-        //echo $this->_misql->sql;
+            $data["lu"] .", " .
+            $data["ma"] .", " .
+            $data["mi"] .", " .
+            $data["ju"] .", " .
+            $data["vi"] .", " .
+            $data["mini"] .", " .
+            $data["mfin"] .", " .
+            $data["tini"] .", " .
+            $data["tfin"] .", " .
+            "'" . $fechaActual ."') ";
+//        echo $this->_misql->sql;
         $this->_misql->ejecutar();
-        if($this->_misql->numeroAfectados())
+        if($this->_misql->numeroAfectados()) {
             $idInsertado = $this->_misql->ultimoIdInsertado();
-        else
+
+            $this->_misql->sql = "INSERT INTO adopciones(estado, termino_condiciones, id_mascota, id_usuario, id_horario, created_at) ".
+                "VALUES(" .
+                "'F1', " .
+                "'1', " .
+                $data["mid"] .", " .
+                $data["id"] .", " .
+                $idInsertado .", " .
+                "'" . $fechaActual ."') ";
+            $this->_misql->ejecutar();
+            if($this->_misql->numeroAfectados()) {
+                $idInsertado = $this->_misql->ultimoIdInsertado();
+            }else{
+                $idInsertado = 0;
+            }
+        }else
             $idInsertado = 0;
         $this->_misql->cerrar();
         return $idInsertado;
     }
     
-    public function insertardemo($data) {
-        $nombre = htmlentities($data["nombre"]);
-        $tipo = htmlentities($data["tipo"]);
-        $imagen = htmlentities($data["imagen"]);
-        
-        $fechaActual = date("Y-m-d H:i:s");
-        $this->_misql->conectar();
-        $this->_misql->sql = "INSERT INTO mascotas(nombre, tipo_mascota,imagen) ".
-            "VALUES(" .
-            "'" . $nombre ."', ".
-            "'" . $tipo ."', ".
-            "'" . $imagen ."') ";
-        //echo $this->_misql->sql;
-        $this->_misql->ejecutar();
-        if($this->_misql->numeroAfectados())
-            $idInsertado = $this->_misql->ultimoIdInsertado();
-        else
-            $idInsertado = 0;
-        $this->_misql->cerrar();
-        return $idInsertado;
-    }
-    
+
 /*
     public function actualizar($data) {
         $dni = isset($data["dni"]) ? $data["dni"] : "";

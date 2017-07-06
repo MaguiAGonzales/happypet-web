@@ -20,6 +20,19 @@ switch ($_REQUEST["f"]) {
         echo json_encode($data);
 
         break;
+
+    case "f1":
+        $idInsetado = $oAdo->insertarF1($_REQUEST);
+        if ($idInsetado > 0) {
+            $ok = true;
+            $msg = "La FASE 1 ha sido registrada correctamente.";
+        } else {
+            $ok = false;
+            $msg = "Error al registrar la FASE 1. Inténtelo luego";
+        }
+        echo json_encode(array("success" => $ok, "msg" => $msg));
+        break;
+
     case 3:
        $ac = $oAdo->actualizar($_POST);
         if ($ac > 0) {
