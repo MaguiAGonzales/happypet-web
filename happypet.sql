@@ -263,36 +263,37 @@ DROP TABLE IF EXISTS `test`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `test` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `p1` varchar(2) NOT NULL,
-  `p2` varchar(2) NOT NULL,
+  `r1` varchar(255) NOT NULL,
   `r2` varchar(255) NOT NULL,
-  `p3` varchar(2) NOT NULL,
+  `r21` tinyint(1) NOT NULL,
   `r3` varchar(255) NOT NULL,
-  `p5` varchar(2) NOT NULL,
-  `r5` varchar(255) NOT NULL,
-  `p6` varchar(2) NOT NULL,
-  `p8` varchar(2) NOT NULL,
-  `p10` varchar(2) NOT NULL,
-  `p11` varchar(2) NOT NULL,
-  `r11` varchar(255) NOT NULL,
-  `p12` varchar(2) NOT NULL,
-  `p13` varchar(2) NOT NULL,
-  `r141` bit(1) DEFAULT NULL,
-  `r142` bit(1) DEFAULT NULL,
-  `r143` bit(1) DEFAULT NULL,
-  `r144` bit(1) DEFAULT NULL,
-  `r145` bit(1) DEFAULT NULL,
-  `r146` bit(1) DEFAULT NULL,
-  `r147` bit(1) DEFAULT NULL,
-  `r148` bit(1) DEFAULT NULL,
-  `r149` bit(1) DEFAULT NULL,
-  `p15` varchar(2) NOT NULL,
-  `r15` varchar(255) NOT NULL,
+  `r31` tinyint(1) NOT NULL,
+  `r4` varchar(255) NOT NULL,
+  `r41` tinyint(1) NOT NULL,
+  `r51` tinyint(1) NOT NULL,
+  `r52` tinyint(1) NOT NULL,
+  `r6` varchar(255) NOT NULL,
+  `r7` varchar(255) NOT NULL,
+  `r8` varchar(255) NOT NULL,
+  `r81` tinyint(1) NOT NULL,
+  `r9` varchar(255) NOT NULL,
+  `r10` varchar(255) NOT NULL,
+  `r101` int(255) NOT NULL DEFAULT '0',
+  `r111` tinyint(1) NOT NULL,
+  `r112` tinyint(1) NOT NULL,
+  `r113` tinyint(1) NOT NULL,
+  `r114` tinyint(1) NOT NULL,
+  `r115` tinyint(1) NOT NULL,
+  `r116` tinyint(1) NOT NULL,
+  `r117` tinyint(1) NOT NULL,
+  `r118` tinyint(1) NOT NULL,
+  `r119` tinyint(1) NOT NULL,
+  `r12` varchar(255) NOT NULL,
   `resultado` varchar(255) DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -588,4 +589,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-07 16:45:59
+-- Dump completed on 2017-07-08  8:54:57

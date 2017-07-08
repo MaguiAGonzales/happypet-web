@@ -167,7 +167,7 @@ class Adopcion {
         return $data;
     }
 
-    public function insertarF1($data) {
+    public function insertarFase1($data) {
         $fechaActual = date("Y-m-d H:i:s");
         $this->_misql->conectar();
         $this->_misql->sql = "INSERT INTO horario(lunes, martes, miercoles, jueves, viernes, maniana_ini, maniana_fin, tarde_ini, tarde_fin, created_at) ".
@@ -201,6 +201,55 @@ class Adopcion {
             }else{
                 $idInsertado = 0;
             }
+        }else
+            $idInsertado = 0;
+        $this->_misql->cerrar();
+        return $idInsertado;
+    }
+
+    public function insertarFase2($data) {
+        $fechaActual = date("Y-m-d H:i:s");
+        $this->_misql->conectar();
+        $this->_misql->sql = "INSERT INTO test(r1,r2,r21,r3,r31,r4,r41,r51,r6,r7,r8,r81,r9,r10,r101,r111,r112,r113,r114,r115,r116,r117,r118,r119,r12,created_at) ".
+            "VALUES(" .
+            "'" . $data["r1"] . "', " .
+            "'" . $data["r2"] . "', " .
+            $data["r21"] . ", " .
+            "'" . $data["r3"] . "', " .
+            $data["r31"] . ", " .
+            "'" . $data["r4"] . "', " .
+            $data["r41"] . ", " .
+            $data["r51"] . ", " .
+            "'" . $data["r6"] . "', " .
+            "'" . $data["r7"] . "', " .
+            "'" . $data["r8"] . "', " .
+            $data["r81"] . ", " .
+            "'" . $data["r9"] . "', " .
+            "'" . $data["r10"] . "', " .
+            $data["r101"] . ", " .
+            $data["r111"] . ", " .
+            $data["r112"] . ", " .
+            $data["r113"] . ", " .
+            $data["r114"] . ", " .
+            $data["r115"] . ", " .
+            $data["r116"] . ", " .
+            $data["r117"] . ", " .
+            $data["r118"] . ", " .
+            $data["r119"] . ", " .
+            "'" . $data["r12"] . "', " .
+            "'" . $fechaActual . "') ";
+//        echo "<br>" . $this->_misql->sql . "<br>";
+        $this->_misql->ejecutar();
+        if($this->_misql->numeroAfectados()) {
+            $idInsertado = $this->_misql->ultimoIdInsertado();
+
+            $this->_misql->sql = "UPDATE adopciones SET id_test = ". $idInsertado . ", estado='F2' " . " WHERE id = " . $data["ida"];
+            $this->_misql->ejecutar();
+//            if($this->_misql->numeroAfectados()) {
+//                $idInsertado = $this->_misql->ultimoIdInsertado();
+//            }else{
+//                $idInsertado = 0;
+//            }
         }else
             $idInsertado = 0;
         $this->_misql->cerrar();

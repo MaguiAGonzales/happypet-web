@@ -22,13 +22,25 @@ switch ($_REQUEST["f"]) {
         break;
 
     case "f1":
-        $idInsetado = $oAdo->insertarF1($_REQUEST);
+        $idInsetado = $oAdo->insertarFase1($_REQUEST);
         if ($idInsetado > 0) {
             $ok = true;
             $msg = "La FASE 1 ha sido registrada correctamente.";
         } else {
             $ok = false;
             $msg = "Error al registrar la FASE 1. Inténtelo luego";
+        }
+        echo json_encode(array("success" => $ok, "msg" => $msg));
+        break;
+
+    case "f2":
+        $idInsetado = $oAdo->insertarFase2($_REQUEST);
+        if ($idInsetado > 0) {
+            $ok = true;
+            $msg = "La FASE 2 ha sido registrada correctamente.";
+        } else {
+            $ok = false;
+            $msg = "Error al registrar la FASE 2. Inténtelo luego";
         }
         echo json_encode(array("success" => $ok, "msg" => $msg));
         break;
