@@ -44,7 +44,7 @@ CREATE TABLE `adopciones` (
   CONSTRAINT `adopciones_ibfk_6` FOREIGN KEY (`id_horario`) REFERENCES `horario` (`id`),
   CONSTRAINT `adopciones_ibfk_7` FOREIGN KEY (`id_test`) REFERENCES `test` (`id`),
   CONSTRAINT `adopciones_ibfk_8` FOREIGN KEY (`id_visita_adopcion`) REFERENCES `visita_adopcion` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +53,7 @@ CREATE TABLE `adopciones` (
 
 LOCK TABLES `adopciones` WRITE;
 /*!40000 ALTER TABLE `adopciones` DISABLE KEYS */;
-INSERT INTO `adopciones` VALUES (1,'TE',0,NULL,15,1,NULL,NULL,NULL,'2017-06-24 08:18:22'),(2,'NP',1,NULL,18,2,NULL,NULL,NULL,'2017-06-24 08:46:04'),(11,'F1',1,7,1,1,NULL,NULL,NULL,'2017-07-05 18:04:34');
+INSERT INTO `adopciones` VALUES (1,'TE',0,9,15,1,6,1,NULL,'2017-06-24 08:18:22'),(2,'NP',1,NULL,18,2,NULL,NULL,NULL,'2017-06-24 08:46:04'),(13,'F3',1,9,17,1,7,NULL,NULL,'2017-07-10 02:40:39');
 /*!40000 ALTER TABLE `adopciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +202,7 @@ CREATE TABLE `horario` (
   `updated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,7 +211,7 @@ CREATE TABLE `horario` (
 
 LOCK TABLES `horario` WRITE;
 /*!40000 ALTER TABLE `horario` DISABLE KEYS */;
-INSERT INTO `horario` VALUES (7,0,0,1,1,0,5,10,7,7,NULL,'2017-07-05 18:04:34');
+INSERT INTO `horario` VALUES (9,0,0,1,1,1,8,11,2,2,NULL,'2017-07-10 02:40:39');
 /*!40000 ALTER TABLE `horario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,7 +293,7 @@ CREATE TABLE `test` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -302,6 +302,7 @@ CREATE TABLE `test` (
 
 LOCK TABLES `test` WRITE;
 /*!40000 ALTER TABLE `test` DISABLE KEYS */;
+INSERT INTO `test` VALUES (6,'me gusta. no','2 gatos',1,'no sabia',0,'es importante',0,1,0,'tendria que haber lugar para ello','juntos','en su propia casa',1,'lo devuelvo','yo',85,1,1,1,0,1,1,0,0,0,'Juan Perez de las Casas','correcto','2017-07-10 02:44:08','2017-07-10 03:07:51'),(7,'gratis','perro',1,'no c',0,'ok',1,1,0,'lo acomodo como sea','bien','patio',1,'lo domestico','yo',45,1,1,0,1,1,0,1,0,0,'Carlos Bustamante','','2017-07-10 03:55:34','2017-07-10 03:56:15');
 /*!40000 ALTER TABLE `test` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -340,7 +341,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Karina','Cabrera','Cajamarca','ikarina@gmail.com',' ',' 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','202cb962ac59075b964b07152d234b70','12345678',' ','1995-07-05','992362541','Jr. del comercio N° 214','Cerca la plaza de Armas',1,'2017-06-01 21:49:35','2017-06-01 21:49:35'),(2,'José','Andrade Muñoz','Cajamarca','jose@upn.com',' ','ruta-temporal/al/directorio/image.jpg','900150983cd24fb0d6963f7d28e17f72','15963214',' ','1994-06-20','975465233','Av. San Martín 1265','Por el grifo Huacaloma',0,'2017-06-01 21:51:33','2017-06-01 21:51:33'),(3,'Karina','Cabrera','Cajamarca','ikarina2@gmail.com',' ','ruta-temporal/al/directorio/image.jpg','$2y$10$XIVDX8d7Pfn5fBkuVnY6g.5CH6vDlfRQsWAKwx3c.kgUq87S0O1nm','41526385',' ','1990-06-13','976555555','Jr. Los Andes N° 564','por el parque las flores',0,'2017-06-01 22:06:33','2017-06-01 22:06:33');
+INSERT INTO `usuario` VALUES (1,'Karina','Cabrera','Cajamarca','ikarina@gmail.com',' ','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','202cb962ac59075b964b07152d234b70','12345678',' ','1995-07-05','992362541','Jr. del comercio N° 214','Cerca la plaza de Armas',1,'2017-06-01 21:49:35','2017-06-01 21:49:35'),(2,'José','Andrade Muñoz','Cajamarca','jose@upn.com',' ','ruta-temporal/al/directorio/image.jpg','900150983cd24fb0d6963f7d28e17f72','15963214',' ','1994-06-20','975465233','Av. San Martín 1265','Por el grifo Huacaloma',0,'2017-06-01 21:51:33','2017-06-01 21:51:33'),(3,'Karina','Cabrera','Cajamarca','ikarina2@gmail.com',' ','ruta-temporal/al/directorio/image.jpg','$2y$10$XIVDX8d7Pfn5fBkuVnY6g.5CH6vDlfRQsWAKwx3c.kgUq87S0O1nm','41526385',' ','1990-06-13','976555555','Jr. Los Andes N° 564','por el parque las flores',0,'2017-06-01 22:06:33','2017-06-01 22:06:33');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -364,7 +365,16 @@ SET character_set_client = utf8;
  1 AS `tipo_mascota`,
  1 AS `sexo`,
  1 AS `particularidades`,
- 1 AS `salud`*/;
+ 1 AS `salud`,
+ 1 AS `dni`,
+ 1 AS `direccion`,
+ 1 AS `referencia`,
+ 1 AS `id_test`,
+ 1 AS `resultado`,
+ 1 AS `id_visita_adopcion`,
+ 1 AS `fecha_adopcion`,
+ 1 AS `hora_adopcion`,
+ 1 AS `descripcion_adopcion`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -453,12 +463,12 @@ DROP TABLE IF EXISTS `visita_adopcion`;
 CREATE TABLE `visita_adopcion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(255) DEFAULT NULL,
-  `hora` varchar(15) NOT NULL,
-  `fecha` datetime NOT NULL,
+  `hora` time NOT NULL,
+  `fecha` date NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -467,6 +477,7 @@ CREATE TABLE `visita_adopcion` (
 
 LOCK TABLES `visita_adopcion` WRITE;
 /*!40000 ALTER TABLE `visita_adopcion` DISABLE KEYS */;
+INSERT INTO `visita_adopcion` VALUES (1,'Hora en punto','15:00:00','2017-07-12','2017-07-10 03:36:58','2017-07-05 03:38:30');
 /*!40000 ALTER TABLE `visita_adopcion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -521,7 +532,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_adopcion` AS select `ado`.`id` AS `id`,`mas`.`imagen` AS `imagen`,`mas`.`nombre` AS `nombre`,concat(`usu`.`nombre`,' ',`usu`.`apellidos`) AS `usuario`,`ado`.`created_at` AS `fecha`,`ado`.`estado` AS `estado`,`ado`.`id_usuario` AS `id_usuario`,`mas`.`ano_nacimiento` AS `ano_nacimiento`,`mas`.`tipo_mascota` AS `tipo_mascota`,`mas`.`sexo` AS `sexo`,`mas`.`particularidades` AS `particularidades`,`mas`.`salud` AS `salud` from ((`adopciones` `ado` join `mascotas` `mas` on((`ado`.`id_mascota` = `mas`.`id`))) join `usuario` `usu` on((`ado`.`id_usuario` = `usu`.`id`))) */;
+/*!50001 VIEW `v_adopcion` AS select `ado`.`id` AS `id`,`mas`.`imagen` AS `imagen`,`mas`.`nombre` AS `nombre`,concat(`usu`.`nombre`,' ',`usu`.`apellidos`) AS `usuario`,`ado`.`created_at` AS `fecha`,`ado`.`estado` AS `estado`,`ado`.`id_usuario` AS `id_usuario`,`mas`.`ano_nacimiento` AS `ano_nacimiento`,`mas`.`tipo_mascota` AS `tipo_mascota`,`mas`.`sexo` AS `sexo`,`mas`.`particularidades` AS `particularidades`,`mas`.`salud` AS `salud`,`usu`.`dni` AS `dni`,`usu`.`direccion` AS `direccion`,`usu`.`referencia` AS `referencia`,`ado`.`id_test` AS `id_test`,`test`.`resultado` AS `resultado`,`ado`.`id_visita_adopcion` AS `id_visita_adopcion`,`visita_adopcion`.`fecha` AS `fecha_adopcion`,`visita_adopcion`.`hora` AS `hora_adopcion`,`visita_adopcion`.`descripcion` AS `descripcion_adopcion` from ((((`adopciones` `ado` join `mascotas` `mas` on((`ado`.`id_mascota` = `mas`.`id`))) join `usuario` `usu` on((`ado`.`id_usuario` = `usu`.`id`))) left join `test` on((`ado`.`id_test` = `test`.`id`))) left join `visita_adopcion` on((`ado`.`id_visita_adopcion` = `visita_adopcion`.`id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -589,4 +600,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-08  8:54:57
+-- Dump completed on 2017-07-10  7:50:53

@@ -14,6 +14,10 @@
 <link rel="stylesheet" href="css/buttons.bootstrap.min.css">
 <link rel="stylesheet" href="css/select.bootstrap.min.css">
 
+<link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
+<link rel="stylesheet" href="css/bootstrap-timepicker.min.css">
+<link rel="stylesheet" href="css/bootstrap-toggle.min.css">
+
 <link rel="stylesheet" href="css/waitme.min.css">
 <link rel="stylesheet" href="css/toastr.min.css">
 

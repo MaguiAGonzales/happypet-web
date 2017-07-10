@@ -22,7 +22,7 @@ class Adopcion {
 
         extract($postData);
 
-        $aColumns = array('id', 'imagen', 'nombre', 'usuario', 'fecha', 'estado');
+        $aColumns = array('id', 'imagen', 'nombre', 'usuario', 'fecha', 'estado', 'tipo_mascota', 'sexo', 'ano_nacimiento', 'dni', 'direccion', 'referencia', 'resultado', 'id_test', 'id_visita_adopcion','fecha_adopcion','hora_adopcion','descripcion_adopcion');
         $sIndexColumn = 'id';
         $sTable = 'v_adopcion';
 
@@ -144,6 +144,15 @@ class Adopcion {
         return json_encode( $output );
     }
 
+    public function info($id){
+        $this->_misql->sql = "SELECT * FROM adopciones WHERE id=" . $id;
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data[0];
+    }
+
     public function listar($data){
         $filtro = (isset($data["id_usuario"]) ? "WHERE id_usuario =" . $data["id_usuario"] : "");
         $this->_misql->sql = "SELECT * FROM v_adopcion ". $filtro ." ORDER BY id desc";
@@ -254,6 +263,25 @@ class Adopcion {
             $idInsertado = 0;
         $this->_misql->cerrar();
         return $idInsertado;
+    }
+
+    public function insertarFase3($data) {
+        $fechaActual = date("Y-m-d H:i:s");
+
+        $ado = $this->info($data["ida"]);
+
+        $this->_misql->conectar();
+        $this->_misql->sql = "UPDATE adopciones SET estado='". ($data["aprobado"] ? "F3" : "NP") ."' WHERE id = " . $data["ida"];
+        $this->_misql->ejecutar();
+
+        if($this->_misql->numeroAfectados()) {
+            $nroAfectados = $this->_misql->numeroAfectados();
+            $this->_misql->sql = "UPDATE test SET resultado='". $data["resultado"] ."', updated_at='". $fechaActual ."' " . " WHERE id = " . $ado["id_test"];
+            $this->_misql->ejecutar();
+        }else
+            $nroAfectados = 0;
+        $this->_misql->cerrar();
+        return $nroAfectados;
     }
     
 

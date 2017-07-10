@@ -30,7 +30,7 @@ switch ($_REQUEST["f"]) {
             $ok = false;
             $msg = "Error al registrar la FASE 1. Inténtelo luego";
         }
-        echo json_encode(array("success" => $ok, "msg" => $msg));
+        echo json_encode(array("success" => $ok, "msg" => $msg, "id" => $idInsetado));
         break;
 
     case "f2":
@@ -41,6 +41,18 @@ switch ($_REQUEST["f"]) {
         } else {
             $ok = false;
             $msg = "Error al registrar la FASE 2. Inténtelo luego";
+        }
+        echo json_encode(array("success" => $ok, "msg" => $msg));
+        break;
+
+    case "f3":
+        $idInsetado = $oAdo->insertarFase3($_REQUEST);
+        if ($idInsetado > 0) {
+            $ok = true;
+            $msg = "Calificación del TEST registrado correctamente.";
+        } else {
+            $ok = false;
+            $msg = "Error al registrar la calificación del TEST. Inténtelo luego";
         }
         echo json_encode(array("success" => $ok, "msg" => $msg));
         break;
