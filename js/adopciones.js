@@ -175,13 +175,27 @@ $(function () {
 
     $("#btnGuardarAdopcion").on("click",function(){
         con = $("#fAdopcion").parents(".modal-content");
-        con.waitMe({ text : 'Guardando Resultado del Test de Adopción...' });
 
-        var data = fAdo.serializeArray();
-        data.push({name: 'f', value: "f3" });
-        data.push({name: 'ida', value: $("#tbId").val() });
-        data.push({name: 'aprobado', value: $("#chbAprobado").prop("checked") });
-        data.push({name: 'resultado', value: $("#tbResultado").val() });
+        switch($("#tbhEstado").val()){
+            case "F2":
+                con.waitMe({ text : 'Guardando Resultado del Test de Adopción...' });
+
+                var data = fAdo.serializeArray();
+                data.push({name: 'f', value: "f3" });
+                data.push({name: 'ida', value: $("#tbId").val() });
+                data.push({name: 'aprobado', value: $("#chbAprobado").prop("checked") });
+                data.push({name: 'resultado', value: $("#tbResultado").val() });
+
+                break;
+            case "F3":
+                con.waitMe({ text : 'Guardando Fecha de Visita de Adopción...' });
+
+                var data = fAdo.serializeArray();
+                data.push({name: 'f', value: "visita" });
+                data.push({name: 'ida', value: $("#tbId").val() });
+
+                break;
+        }
 
         $.post("funciones/admin_adopcion.php", data, function(d) {
             if (!d.success) {
@@ -193,7 +207,7 @@ $(function () {
             }
             con.waitMe('hide');
         },'json').fail(function() {
-            toastr["error"]("Ocurrió un error al guardar el resultado");
+            toastr["error"]("Ocurrió un error al guardar. Inténtelo luego");
             con.waitMe('hide');
         });
 

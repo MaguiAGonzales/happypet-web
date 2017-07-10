@@ -5,6 +5,8 @@ mb_internal_encoding('UTF-8');
 
 session_start();
 
+include_once("../funciones/fechas.php");
+
 class Adopcion {
 
     private $_misql;
@@ -282,6 +284,26 @@ class Adopcion {
             $nroAfectados = 0;
         $this->_misql->cerrar();
         return $nroAfectados;
+    }
+
+    public function visitaAdopcion($data) {
+        $fechaActual = date("Y-m-d H:i:s");
+        $this->_misql->conectar();
+        $this->_misql->sql = "INSERT INTO visita_adopcion(fecha,hora,descripcion,created_at) ".
+            "VALUES(" .
+            "'" . fechaEspIng($data["fecha"]). "', " .
+            "'" . horaMinA24($data["hora"]) . "', " .
+            "'" . $data["descripcion"] . "', " .
+            "'" . $fechaActual . "') ";
+        $this->_misql->ejecutar();
+        if($this->_misql->numeroAfectados()) {
+            $idInsertado = $this->_misql->ultimoIdInsertado();
+            $this->_misql->sql = "UPDATE adopciones SET id_visita_adopcion = ". $idInsertado . ", estado='TE' " . " WHERE id = " . $data["ida"];
+            $this->_misql->ejecutar();
+        }else
+            $idInsertado = 0;
+        $this->_misql->cerrar();
+        return $idInsertado;
     }
     
 

@@ -56,6 +56,17 @@ switch ($_REQUEST["f"]) {
         }
         echo json_encode(array("success" => $ok, "msg" => $msg));
         break;
+    case "visita":
+        $idInsetado = $oAdo->visitaAdopcion($_REQUEST);
+        if ($idInsetado > 0) {
+            $ok = true;
+            $msg = "Fecha de Visita de Adopción registrada correctamente.";
+        } else {
+            $ok = false;
+            $msg = "Error al registrar Visita de Adopción. Inténtelo luego";
+        }
+        echo json_encode(array("success" => $ok, "msg" => $msg));
+        break;
 
     case 3:
        $ac = $oAdo->actualizar($_POST);

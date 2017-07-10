@@ -156,7 +156,7 @@
                                             <div class="form-group col-sm-6">
                                                 <label for="tbFecha">Fecha: </label>
                                                 <div class="input-group date">
-                                                    <input id="tbFecha" class="form-control pull-right" type="text">
+                                                    <input id="tbFecha" class="form-control pull-right" type="text" name="fecha">
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-calendar"></i>
                                                     </div>
@@ -165,7 +165,7 @@
                                             <div class="form-group col-sm-6">
                                                 <label for="tbHora">Hora: </label>
                                                 <div class="input-group">
-                                                    <input id="tbHora" class="form-control timepicker" type="text">
+                                                    <input id="tbHora" class="form-control timepicker" type="text" name="hora">
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-clock-o"></i>
                                                     </div>
@@ -175,7 +175,7 @@
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for="tbDescripcion">Descripcion: </label>
-                                                <input type="text" class="form-control" id="tbDescripcion">
+                                                <input type="text" class="form-control" id="tbDescripcion" name="descripcion">
                                             </div>
                                         </div>
                                     </div>
