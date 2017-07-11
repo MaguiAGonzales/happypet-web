@@ -5,6 +5,7 @@ $oDen = new Denuncia();
 
 switch ($_REQUEST["f"]) {
     case "listar":
+        $_REQUEST["tipo"] = isset($_REQUEST["tipo"]) ? $_REQUEST["tipo"] : "TODOS";
         $data = $oDen->listar($_REQUEST["tipo"]);        
         header('Content-Type: application/json;charset=utf-8');        
         echo json_encode($data);

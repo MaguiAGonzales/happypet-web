@@ -16,7 +16,7 @@ $(function () {
                     reg.find(".estado").html("Atendido").removeClass("label label-danger");
                 }
                 
-                reg.find(".fecha").html(fila.fecha);
+                reg.find(".fecha").html(fechaIngAesp(fila.fecha));
                 $(".listado").append(reg.html());
             }            
         }
