@@ -28,7 +28,7 @@ class Denuncia {
     
     public function listar($tipo){
         $filtro = $tipo == "TODOS" ? "" : "WHERE tipo='". $tipo ."'";
-        $this->_misql->sql = "SELECT * FROM denuncia filtro ORDER BY id desc";
+        $this->_misql->sql = "SELECT * FROM denuncia $filtro ORDER BY id desc";
         $this->_misql->conectar();
         $this->_misql->ejecutar();
         $data = $this->_misql->devolverArreglo();
