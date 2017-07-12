@@ -26,9 +26,13 @@ class Denuncia {
             $data[2]["tipo"] => $this->ceros($data[2]["total"]));
     }
     
-    public function listar($tipo){
-        $filtro = $tipo == "TODOS" ? "" : "WHERE tipo='". $tipo ."'";
-        $this->_misql->sql = "SELECT * FROM denuncia $filtro ORDER BY id desc";
+    public function listar($data){
+        $tipo = isset($data["tipo"]) ? $data["tipo"] : "TODOS";
+        $filtro = $tipo == "TODOS" ? "" : " AND tipo='". $tipo ."' ";
+        $filtro .= isset($data["id"]) ? " AND id_usuario=" . $data["id"] : "";
+        $filtro .= isset($data["tipo"]) ? " AND tipo=" . $data["tipo"] : "";
+
+        $this->_misql->sql = "SELECT * FROM denuncia WHERE 1=1  $filtro ORDER BY id desc";
         $this->_misql->conectar();
         $this->_misql->ejecutar();
         $data = $this->_misql->devolverArreglo();
