@@ -196,54 +196,54 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">DETALLE FASE 1</h4>
+                            <h4 class="modal-title">FASE 1 : Información del Usuario</h4>
                         </div>
                         <div  class="modal-body">
-                            <form id="fAdopciondeltallefase1" class="form" role="form">
-                                <fieldset class="form-group">
-                                    <legend data-toggle="collapse" href="#secUsuario" aria-expanded="true" aria-controls="secUsuario">Información del Usuario</legend>
-                                    <section id="secUsuario" class="collapse in">
-                                        <div class="row">
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbUsuarioDni_fase1">DNI</label>
-                                                <input type="text" class="form-control" id="tbUsuarioDni_fase1" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbUsuarioNombres_fase1">Nombre Completo</label>
-                                                <input type="text" class="form-control" id="tbUsuarioNombres_fase1" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbUsuarioTelefonoFijo_fase1">Telefono Fijo</label>
-                                                <input type="text" class="form-control" id="tbUsuarioTelefonoFijo_fase1" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbUsuarioTelefonoCelular_fase1">Telefono Celular</label>
-                                                <input type="text" class="form-control" id="tbUsuarioTelefonoCelular_fase1" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbUsuarioOcupacion_fase1">Ocupacion</label>
-                                                <input type="text" class="form-control" id="tbUsuarioOcupacion_fase1" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbUsuarioCiudad_fase1">Ciudad</label>
-                                                <input type="text" class="form-control" id="tbUsuarioCiudad_fase1" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbUsuarioDias_fase1">Dias</label>
-                                                <input type="text" class="form-control" id="tbUsuarioDias_fase1" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbUsuarioHoras_fase1">Horas</label>
-                                                <input type="text" class="form-control" id="tbUsuarioHoras_fase1" readonly>
-                                            </div>
-                                        </div>
-                                </fieldset>
+                            <form id="fDetalleFase1" class="form" role="form">
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbUsuarioDni_fase1">DNI</label>
+                                        <input type="text" class="form-control" id="tbUsuarioDni_fase1" readonly>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbUsuarioNombres_fase1">Nombre Completo</label>
+                                        <input type="text" class="form-control" id="tbUsuarioNombres_fase1" readonly>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbUsuarioTelefonoFijo_fase1">Telefono Fijo</label>
+                                        <input type="text" class="form-control" id="tbUsuarioTelefonoFijo_fase1" readonly>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbUsuarioTelefonoCelular_fase1">Telefono Celular</label>
+                                        <input type="text" class="form-control" id="tbUsuarioTelefonoCelular_fase1" readonly>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbUsuarioOcupacion_fase1">Ocupacion</label>
+                                        <input type="text" class="form-control" id="tbUsuarioOcupacion_fase1" readonly>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbUsuarioCiudad_fase1">Ciudad</label>
+                                        <input type="text" class="form-control" id="tbUsuarioCiudad_fase1" readonly>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbUsuarioDias_fase1">Dias</label>
+                                        <input type="text" class="form-control" id="tbUsuarioDias_fase1" readonly>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbUsuarioHoras_fase1">Horas</label>
+                                        <input type="text" class="form-control" id="tbUsuarioHoras_fase1" readonly>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="reset" class="btn btn-default" data-dismiss="modal" tabindex="-1">Cancelar</button>
+                            <button type="reset" class="btn btn-default" data-dismiss="modal" tabindex="-1">Aceptar</button>
                         </div>
                     </div>
                 </div>
@@ -254,76 +254,100 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">DETALLE FASE 2</h4>
+                            <h4 class="modal-title">FASE 2 : Información del Test</h4>
                         </div>
                         <div  class="modal-body">
-                            <form id="fAdopciondeltallefase1" class="form" role="form">
-                                <fieldset class="form-group">
-                                    <legend data-toggle="collapse" href="#secUsuario" aria-expanded="true" aria-controls="secUsuario">Información del Test</legend>
-                                    <section id="secUsuario" class="collapse in">
-                                        <div class="row">
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbPregunta1">Pregunta 1</label>
-                                                <input type="text" class="form-control" id="tbPregunta1" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbPregunta2">Pregunta 2</label>
-                                                <input type="text" class="form-control" id="tbPregunta21" readonly>
-                                                <input type="text" class="form-control" id="tbPregunta2" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbPregunta3">Pregunta 3</label>
-                                                <input type="text" class="form-control" id="tbPregunta31" readonly>
-                                                <input type="text" class="form-control" id="tbPregunta3" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbPregunta4">Pregunta 4</label>
-                                                <input type="text" class="form-control" id="tbPregunta41" readonly>
-                                                <input type="text" class="form-control" id="tbPregunta4" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbPregunta51">Pregunta 5</label>
-                                                <input type="text" class="form-control" id="tbPregunta51" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbPregunta6">Pregunta 6</label>
-                                                <input type="text" class="form-control" id="tbPregunta6" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbPregunta7">Pregunta 7</label>
-                                                <input type="text" class="form-control" id="tbPregunta7" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbPregunta8">Pregunta 8</label>
-                                                <input type="text" class="form-control" id="tbPregunta81" readonly>
-                                                <input type="text" class="form-control" id="tbPregunta8" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbPregunta9">Pregunta 9</label>
-                                                <input type="text" class="form-control" id="tbPregunta9" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbPregunta10">Pregunta 10</label>
-                                                <input type="text" class="form-control" id="tbPregunta101" readonly>
-                                                <input type="text" class="form-control" id="tbPregunta10" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbPregunta11">Pregunta 11</label>
-                                                <input type="text" class="form-control" id="tbPregunta11" readonly>
-                                            </div>
-                                            <div class="form-group col-sm-6">
-                                                <label for="tbPregunta12">Pregunta 12</label>
-                                                <input type="text" class="form-control" id="tbPregunta121" readonly>
-                                                <input type="text" class="form-control" id="tbPregunta12" readonly>
-                                            </div>
-                                        </div>
-                                </fieldset>
+                            <form id="fDetalleFase2" class="form" role="form">
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbPregunta1">Pregunta 1</label>
+                                        <input type="text" class="form-control" id="tbPregunta1" readonly>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbPregunta2">Pregunta 2</label>
+                                        <input type="text" class="form-control" id="tbPregunta2" readonly>
+                                        <input id="chbPregunta21" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="success" data-offstyle="danger">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbPregunta3">Pregunta 3</label>
+                                        <input type="text" class="form-control" id="tbPregunta3" readonly>
+                                        <input id="chbPregunta31" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="success" data-offstyle="danger">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbPregunta4">Pregunta 4</label>
+                                        <input type="text" class="form-control" id="tbPregunta4" readonly>
+                                        <input id="chbPregunta41" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="success" data-offstyle="danger">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="chbPregunta51">Pregunta 5</label>
+                                        <input id="chbPregunta51" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="success" data-offstyle="danger">
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbPregunta6">Pregunta 6</label>
+                                        <input type="text" class="form-control" id="tbPregunta6" readonly>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbPregunta7">Pregunta 7</label>
+                                        <input type="text" class="form-control" id="tbPregunta7" readonly>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbPregunta8">Pregunta 8</label>
+                                        <input type="text" class="form-control" id="tbPregunta8" readonly>
+                                        <input id="chbPregunta81" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="success" data-offstyle="danger">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbPregunta9">Pregunta 9</label>
+                                        <input type="text" class="form-control" id="tbPregunta9" readonly>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="tbPregunta10">Pregunta 10</label>
+                                        <input type="text" class="form-control" id="tbPregunta10" readonly>
+                                        <input type="text" class="form-control" id="tbPregunta101" readonly>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12" style="margin-bottom: 0px;">
+                                        <label>11. Señale los cuidados que usted y su familia estarían dispuestos a darle al adoptado:</label>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label></label>
+                                        <ul class="list-group">
+                                            <li class="list-group-item"><span class="badge" id="r11_1">no</span>Visitas al Veterinario</li>
+                                            <li class="list-group-item"><span class="badge" id="r11_2">no</span>Paseos con Correa</li>
+                                            <li class="list-group-item"><span class="badge" id="r11_3">no</span>Vacunación</li>
+                                            <li class="list-group-item"><span class="badge" id="r11_4">no</span>Dosis antipulgas</li>
+                                            <li class="list-group-item"><span class="badge" id="r11_5">no</span>Plato con agual impia todos los dias</li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label></label>
+                                        <ul class="list-group">
+                                            <li class="list-group-item"><span class="badge" id="r11_6">no</span>Alimentación</li>
+                                            <li class="list-group-item"><span class="badge" id="r11_7">no</span>Desparacitación</li>
+                                            <li class="list-group-item"><span class="badge" id="r11_8">no</span>Limpieza diaria de arenero</li>
+                                            <li class="list-group-item"><span class="badge" id="r11_9">no</span>Corte de pelo</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <label for="tbPregunta12">Pregunta 12</label>
+                                        <input type="text" class="form-control" id="tbPregunta12" readonly>
+                                        <input id="chbPregunta121" type="checkbox" checked data-toggle="toggle" data-on="SI" data-off="NO" data-onstyle="success" data-offstyle="danger">
+                                    </div>
+                                </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="reset" class="btn btn-default" data-dismiss="modal" tabindex="-1">Cancelar</button>
+                            <button type="reset" class="btn btn-default" data-dismiss="modal" tabindex="-1">Aceptar</button>
                         </div>
                     </div>
                 </div>

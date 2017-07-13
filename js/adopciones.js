@@ -99,6 +99,44 @@ $(function () {
             toastr["error"]("Ocurrió un error al traer el Horario");
         });
 
+        if(fila.estado != "F1"){
+            $.post("funciones/admin_test.php", {f: "info", id: fila.id_test}, function(d) {
+                $("#tbPregunta1").val(d.r1);
+                $("#tbPregunta2").val(d.r2);
+                $("#chbPregunta21").prop("checked", d.r21=="1"?true:false).change().bootstrapToggle('disable');
+                $("#tbPregunta3").val(d.r3);
+                $("#chbPregunta31").prop("checked", d.r31=="1"?true:false).change().bootstrapToggle('disable');
+                $("#tbPregunta4").val(d.r4);
+                $("#chbPregunta41").prop("checked", d.r41=="1"?true:false).change().bootstrapToggle('disable');
+                $("#chbPregunta51").prop("checked", d.r51=="1"?true:false).change().bootstrapToggle('disable');
+                $("#tbPregunta6").val(d.r6);
+                $("#tbPregunta7").val(d.r7);
+                $("#tbPregunta8").val(d.r8);
+                $("#chbPregunta81").prop("checked", d.r81=="1"?true:false).change().bootstrapToggle('disable');
+                $("#tbPregunta9").val(d.r9);
+                $("#tbPregunta101").val(d.r101);
+                $("#tbPregunta10").val(d.r10);
+
+                $("#r11_1").html(d.r111=="1"?"SI":"NO").addClass(d.r111=="1"?"bg-green":"");
+                $("#r11_2").html(d.r112=="1"?"SI":"NO").addClass(d.r112=="1"?"bg-green":"");
+                $("#r11_3").html(d.r113=="1"?"SI":"NO").addClass(d.r113=="1"?"bg-green":"");
+                $("#r11_4").html(d.r114=="1"?"SI":"NO").addClass(d.r114=="1"?"bg-green":"");
+                $("#r11_5").html(d.r115=="1"?"SI":"NO").addClass(d.r115=="1"?"bg-green":"");
+                $("#r11_6").html(d.r116=="1"?"SI":"NO").addClass(d.r116=="1"?"bg-green":"");
+                $("#r11_7").html(d.r117=="1"?"SI":"NO").addClass(d.r117=="1"?"bg-green":"");
+                $("#r11_8").html(d.r118=="1"?"SI":"NO").addClass(d.r118=="1"?"bg-green":"");
+                $("#r11_9").html(d.r119=="1"?"SI":"NO").addClass(d.r119=="1"?"bg-green":"");
+
+                $("#tbPregunta12").val(d.r12);
+                $("#chbPregunta121").prop("checked", d.r12.length>0?true:false).change().bootstrapToggle('disable');
+            },'json').fail(function() {
+                toastr["error"]("Ocurrió un error al traer el TEST");
+            });
+        }
+
+
+
+
         $("#tbResultado").val(fila.resultado);
 
 
@@ -112,6 +150,9 @@ $(function () {
                 $('#chbAprobado').prop('checked', true).change();
                 $("#fase2 input, #fase3 input").attr('readonly','readonly');
                 $('#chbAprobado').bootstrapToggle('disable');
+
+                $('#btnFase1Detalle').prop('disabled',false);
+                $('#btnFase2Detalle').prop('disabled',true);
                 break;
             case "F2":
                 $("#fase1, #fase2").addClass("fase-llena");
@@ -121,6 +162,9 @@ $(function () {
                 $("#fase2 input").removeAttr('readonly');
                 $("#fase3 input").attr('readonly','readonly');
                 $('#chbAprobado').bootstrapToggle('enable');
+
+                $('#btnFase1Detalle').prop('disabled',false);
+                $('#btnFase2Detalle').prop('disabled',false);
                 break;
             case "F3":
                 $("#fase1, #fase2, #fase3").addClass("fase-llena");
@@ -130,6 +174,8 @@ $(function () {
                 $("#fase3 input").removeAttr('readonly');
                 $('#chbAprobado').bootstrapToggle('disable');
 
+                $('#btnFase1Detalle').prop('disabled',false);
+                $('#btnFase2Detalle').prop('disabled',false);
 
                 $("#tbHora").timepicker();
                 $('#tbFecha').datepicker();
@@ -142,6 +188,9 @@ $(function () {
                 $("#fase2 input, #fase3 input").attr('readonly','readonly');
                 $('#chbAprobado').bootstrapToggle('disable');
 
+                $('#btnFase1Detalle').prop('disabled',false);
+                $('#btnFase2Detalle').prop('disabled',false);
+
                 $("#btnGuardarAdopcion").hide();
                 break;
             case "TE":
@@ -150,6 +199,9 @@ $(function () {
                 $('#chbAprobado').prop('checked', true).change();
                 $("#fase2 input, #fase3 input").attr('readonly','readonly');
                 $('#chbAprobado').bootstrapToggle('disable');
+
+                $('#btnFase1Detalle').prop('disabled',false);
+                $('#btnFase2Detalle').prop('disabled',false);
 
                 $("#tbIdVisitaAdopcion").val(fila.id_visita_adopcion);
                 $("#tbFecha").val(fechaIngAesp(fila.fecha_adopcion));

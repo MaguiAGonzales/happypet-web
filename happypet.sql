@@ -44,7 +44,7 @@ CREATE TABLE `adopciones` (
   CONSTRAINT `adopciones_ibfk_6` FOREIGN KEY (`id_horario`) REFERENCES `horario` (`id`),
   CONSTRAINT `adopciones_ibfk_7` FOREIGN KEY (`id_test`) REFERENCES `test` (`id`),
   CONSTRAINT `adopciones_ibfk_8` FOREIGN KEY (`id_visita_adopcion`) REFERENCES `visita_adopcion` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +53,7 @@ CREATE TABLE `adopciones` (
 
 LOCK TABLES `adopciones` WRITE;
 /*!40000 ALTER TABLE `adopciones` DISABLE KEYS */;
-INSERT INTO `adopciones` VALUES (1,'TE',0,9,15,1,6,1,NULL,'2017-06-24 08:18:22'),(2,'NP',1,10,18,2,NULL,NULL,NULL,'2017-06-24 08:46:04'),(13,'F3',1,9,17,1,7,NULL,NULL,'2017-07-10 02:40:39'),(28,'TE',1,24,29,1,8,4,NULL,'2017-07-11 18:29:31');
+INSERT INTO `adopciones` VALUES (1,'TE',0,9,15,1,6,1,NULL,'2017-06-24 08:18:22'),(2,'NP',1,10,18,2,8,NULL,NULL,'2017-06-24 08:46:04'),(13,'F3',1,9,17,1,7,NULL,NULL,'2017-07-10 02:40:39'),(28,'TE',1,24,29,1,8,4,NULL,'2017-07-11 18:29:31');
 /*!40000 ALTER TABLE `adopciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +177,7 @@ CREATE TABLE `extraviado` (
 
 LOCK TABLES `extraviado` WRITE;
 /*!40000 ALTER TABLE `extraviado` DISABLE KEYS */;
-INSERT INTO `extraviado` VALUES (1,'2017-06-20','Cerca al Parque Las Flores',0,27,NULL,'2017-06-21 05:22:35');
+INSERT INTO `extraviado` VALUES (1,'2017-06-20','Cerca al Parque Las Flores',0,18,NULL,'2017-06-21 05:22:35');
 /*!40000 ALTER TABLE `extraviado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +202,7 @@ CREATE TABLE `horario` (
   `updated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -606,4 +606,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-12 20:38:10
+-- Dump completed on 2017-07-13  7:03:02
