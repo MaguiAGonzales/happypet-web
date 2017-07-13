@@ -24,7 +24,7 @@ class Adopcion {
 
         extract($postData);
 
-        $aColumns = array('id', 'imagen', 'nombre', 'usuario', 'fecha', 'estado', 'tipo_mascota', 'sexo', 'ano_nacimiento', 'dni', 'direccion', 'referencia', 'resultado', 'id_test', 'id_visita_adopcion','fecha_adopcion','hora_adopcion','descripcion_adopcion');
+        $aColumns = array('id', 'imagen', 'nombre', 'usuario', 'fecha', 'estado', 'tipo_mascota', 'sexo', 'ano_nacimiento', 'dni', 'direccion', 'referencia', 'resultado', 'id_test', 'id_visita_adopcion','fecha_adopcion','hora_adopcion','descripcion_adopcion', "telefono", "celular", "ciudad", "ocupacion", "id_horario");
         $sIndexColumn = 'id';
         $sTable = 'v_adopcion';
 

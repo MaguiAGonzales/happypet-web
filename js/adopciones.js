@@ -69,8 +69,6 @@ $(function () {
 
 
     dtAdo.on('click', '.dt-btn-estado', function () {
-        // con = dtAdo.parents(".dataTables_wrapper");
-
         var fila = dtAdo.row($(this).parents('tr')).data();
 
         $("#tbId").val(fila.id);
@@ -86,6 +84,20 @@ $(function () {
         $("#tbUsuarioNombres").val(fila.usuario);
         $("#tbUsuarioDireccion").val(fila.direccion);
         $("#tbUsuarioReferencia").val(fila.referencia);
+
+        $("#tbUsuarioDni_fase1").val(fila.dni);
+        $("#tbUsuarioNombres_fase1").val(fila.usuario);
+        $("#tbUsuarioTelefonoFijo_fase1").val(fila.telefono);
+        $("#tbUsuarioTelefonoCelular_fase1").val(fila.celular);
+        $("#tbUsuarioOcupacion_fase1").val(fila.ocupacion);
+        $("#tbUsuarioCiudad_fase1").val(fila.ciudad);
+
+        $.post("funciones/admin_horario.php", {f: "horario", id: fila.id_horario}, function(d) {
+            $("#tbUsuarioDias_fase1").val(d.dias);
+            $("#tbUsuarioHoras_fase1").val(d.horas);
+        },'json').fail(function() {
+            toastr["error"]("Ocurrió un error al traer el Horario");
+        });
 
         $("#tbResultado").val(fila.resultado);
 

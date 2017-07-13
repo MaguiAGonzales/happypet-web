@@ -27,8 +27,8 @@ class Denuncia {
     }
     
     public function listar($data){
-        $tipo = isset($data["tipo"]) ? $data["tipo"] : "TODOS";
-        $filtro = $tipo == "TODOS" ? "" : " AND tipo='". $tipo ."' ";
+        $tipo = isset($data["tipo"]) ? $data["tipo"] : "TODAS";
+        $filtro = $tipo == "TODAS" ? "" : " AND tipo='". $tipo ."' ";
         $filtro .= isset($data["id"]) ? " AND id_usuario=" . $data["id"] : "";
         $filtro .= isset($data["tipo"]) ? " AND tipo=" . $data["tipo"] : "";
 

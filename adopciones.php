@@ -131,11 +131,11 @@
                                     <input type="hidden" id="tbhEstado">
                                     <div id="fase1" class="fase">
                                         <b>FASE N° 1</b> : Datos para la Adopción
-                                        <button type="button" id="btnFase1Detalle" class="btn btn-success btn-xs pull-right">Detalle</button>
+                                        <button type="button" id="btnFase1Detalle" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#mDetalleFase1">Detalle</button>
                                     </div>
                                     <div id="fase2" class="fase">
                                         <b>FASE N° 2</b> : Test de Adopción
-                                        <button type="button" id="btnFase2Detalle" class="btn btn-warning btn-xs pull-right">Detalle</button>
+                                        <button type="button" id="btnFase2Detalle" class="btn btn-warning btn-xs pull-right" data-toggle="modal" data-target="#mDetalleFase2">Detalle</button>
                                         <div class="row">
                                             <div class="form-group col-sm-2">
                                                 <label for="chbAprobado">Aprobado: </label>
@@ -189,6 +189,147 @@
                     </div>
                 </div>
             </div>
+
+
+            <div id="mDetalleFase1" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">DETALLE FASE 1</h4>
+                        </div>
+                        <div  class="modal-body">
+                            <form id="fAdopciondeltallefase1" class="form" role="form">
+                                <fieldset class="form-group">
+                                    <legend data-toggle="collapse" href="#secUsuario" aria-expanded="true" aria-controls="secUsuario">Información del Usuario</legend>
+                                    <section id="secUsuario" class="collapse in">
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbUsuarioDni_fase1">DNI</label>
+                                                <input type="text" class="form-control" id="tbUsuarioDni_fase1" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbUsuarioNombres_fase1">Nombre Completo</label>
+                                                <input type="text" class="form-control" id="tbUsuarioNombres_fase1" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbUsuarioTelefonoFijo_fase1">Telefono Fijo</label>
+                                                <input type="text" class="form-control" id="tbUsuarioTelefonoFijo_fase1" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbUsuarioTelefonoCelular_fase1">Telefono Celular</label>
+                                                <input type="text" class="form-control" id="tbUsuarioTelefonoCelular_fase1" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbUsuarioOcupacion_fase1">Ocupacion</label>
+                                                <input type="text" class="form-control" id="tbUsuarioOcupacion_fase1" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbUsuarioCiudad_fase1">Ciudad</label>
+                                                <input type="text" class="form-control" id="tbUsuarioCiudad_fase1" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbUsuarioDias_fase1">Dias</label>
+                                                <input type="text" class="form-control" id="tbUsuarioDias_fase1" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbUsuarioHoras_fase1">Horas</label>
+                                                <input type="text" class="form-control" id="tbUsuarioHoras_fase1" readonly>
+                                            </div>
+                                        </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-default" data-dismiss="modal" tabindex="-1">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="mDetalleFase2" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">DETALLE FASE 2</h4>
+                        </div>
+                        <div  class="modal-body">
+                            <form id="fAdopciondeltallefase1" class="form" role="form">
+                                <fieldset class="form-group">
+                                    <legend data-toggle="collapse" href="#secUsuario" aria-expanded="true" aria-controls="secUsuario">Información del Test</legend>
+                                    <section id="secUsuario" class="collapse in">
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbPregunta1">Pregunta 1</label>
+                                                <input type="text" class="form-control" id="tbPregunta1" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbPregunta2">Pregunta 2</label>
+                                                <input type="text" class="form-control" id="tbPregunta21" readonly>
+                                                <input type="text" class="form-control" id="tbPregunta2" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbPregunta3">Pregunta 3</label>
+                                                <input type="text" class="form-control" id="tbPregunta31" readonly>
+                                                <input type="text" class="form-control" id="tbPregunta3" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbPregunta4">Pregunta 4</label>
+                                                <input type="text" class="form-control" id="tbPregunta41" readonly>
+                                                <input type="text" class="form-control" id="tbPregunta4" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbPregunta51">Pregunta 5</label>
+                                                <input type="text" class="form-control" id="tbPregunta51" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbPregunta6">Pregunta 6</label>
+                                                <input type="text" class="form-control" id="tbPregunta6" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbPregunta7">Pregunta 7</label>
+                                                <input type="text" class="form-control" id="tbPregunta7" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbPregunta8">Pregunta 8</label>
+                                                <input type="text" class="form-control" id="tbPregunta81" readonly>
+                                                <input type="text" class="form-control" id="tbPregunta8" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbPregunta9">Pregunta 9</label>
+                                                <input type="text" class="form-control" id="tbPregunta9" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbPregunta10">Pregunta 10</label>
+                                                <input type="text" class="form-control" id="tbPregunta101" readonly>
+                                                <input type="text" class="form-control" id="tbPregunta10" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbPregunta11">Pregunta 11</label>
+                                                <input type="text" class="form-control" id="tbPregunta11" readonly>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label for="tbPregunta12">Pregunta 12</label>
+                                                <input type="text" class="form-control" id="tbPregunta121" readonly>
+                                                <input type="text" class="form-control" id="tbPregunta12" readonly>
+                                            </div>
+                                        </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-default" data-dismiss="modal" tabindex="-1">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
 
             <?php include_once("sis_pie.php"); ?>
