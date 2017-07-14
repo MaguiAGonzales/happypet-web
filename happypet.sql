@@ -242,7 +242,7 @@ CREATE TABLE `mascotas` (
   PRIMARY KEY (`id`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `mascotas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -431,7 +431,8 @@ SET character_set_client = utf8;
  1 AS `nombre`,
  1 AS `tipo_mascota`,
  1 AS `sexo`,
- 1 AS `ano_nacimiento`*/;
+ 1 AS `ano_nacimiento`,
+ 1 AS `celular`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -574,7 +575,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_extraviado` AS select `e`.`id` AS `id`,`e`.`fecha` AS `fecha`,`e`.`detalle` AS `detalle`,`e`.`encontrado` AS `encontrado`,`e`.`id_mascota` AS `id_mascota`,`e`.`updated_at` AS `updated_at`,`e`.`created_at` AS `created_at`,`m`.`imagen` AS `imagen`,`m`.`nombre` AS `nombre`,`m`.`tipo_mascota` AS `tipo_mascota`,`m`.`sexo` AS `sexo`,`m`.`ano_nacimiento` AS `ano_nacimiento` from (`extraviado` `e` join `mascotas` `m` on((`e`.`id_mascota` = `m`.`id`))) */;
+/*!50001 VIEW `v_extraviado` AS select `e`.`id` AS `id`,`e`.`fecha` AS `fecha`,`e`.`detalle` AS `detalle`,`e`.`encontrado` AS `encontrado`,`e`.`id_mascota` AS `id_mascota`,`e`.`updated_at` AS `updated_at`,`e`.`created_at` AS `created_at`,`m`.`imagen` AS `imagen`,`m`.`nombre` AS `nombre`,`m`.`tipo_mascota` AS `tipo_mascota`,`m`.`sexo` AS `sexo`,`m`.`ano_nacimiento` AS `ano_nacimiento`,`usuario`.`celular` AS `celular` from ((`extraviado` `e` join `mascotas` `m` on((`e`.`id_mascota` = `m`.`id`))) join `usuario` on((`m`.`id_usuario` = `usuario`.`id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -606,4 +607,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-14  6:28:57
+-- Dump completed on 2017-07-14  9:22:32
