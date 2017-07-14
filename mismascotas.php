@@ -101,9 +101,15 @@
                                     <input type="text" class="form-control" id="tbAnio" name="anio">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="tbTamanio">Tamaño</label>
-                                <input type="text" class="form-control" id="tbTamanio" name="tamanio">
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label for="cbTamanio">Tamaño</label>
+                                    <select id="cbTamanio" name="tamanio" class="form-control">
+                                        <option>pequeño</option>
+                                        <option>mediano</option>
+                                        <option>grande</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tbParticularidades">Particularidades</label>
