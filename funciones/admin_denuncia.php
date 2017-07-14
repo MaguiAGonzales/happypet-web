@@ -9,6 +9,18 @@ switch ($_REQUEST["f"]) {
         header('Content-Type: application/json;charset=utf-8');        
         echo json_encode($data);
         break;
+
+    case "insertar":
+        $idInsetado = $oDen->insertar($_POST);
+        if ($idInsetado > 0) {
+            $ok = true;
+            $msg = "Denuncia registrada correctamente.";
+        } else {
+            $ok = false;
+            $msg = "Error al insertar el registro. Inténtelo luego";
+        }
+        echo json_encode(array("success" => $ok, "msg" => $msg));
+        break;
         
     case "detalle":
         $data = $oDen->listarDetalle($_REQUEST["id"]);

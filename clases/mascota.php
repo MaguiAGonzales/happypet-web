@@ -146,7 +146,7 @@ class Mascota {
     
     public function listar($data){
         $filtro = isset($data["id_usuario"])? " WHERE id_usuario=" . $data["id_usuario"] : "";
-        $this->_misql->sql = "SELECT id, nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento, imagen, id_usuario, es_adoptado ".
+        $this->_misql->sql = "SELECT id, nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento, imagen, id_usuario, es_adoptado, esterilizado, tamano ".
             "FROM mascotas $filtro ORDER BY id desc";
         $this->_misql->conectar();
         $this->_misql->ejecutar();
@@ -164,14 +164,16 @@ class Mascota {
         $particilaridades = $data["particularidades"];
         //$salud = htmlentities($data["salud"]);
         $salud = $data["salud"];
+        $tamanio = $data["tamanio"];
         $adoptado = htmlentities($data["adoptado"]);
+        $esterilizado = htmlentities($data["esterilizado"]);
         $imagen = htmlentities($data["imagen"]);
         $id_usuario = $data["id_usuario"];
         $adoptable = $data["adoptable"];
 
         $fechaActual = date("Y-m-d H:i:s");
         $this->_misql->conectar();
-        $this->_misql->sql = "INSERT INTO mascotas(nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento,  es_adoptado, imagen,id_usuario,adoptable) ".
+        $this->_misql->sql = "INSERT INTO mascotas(nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento,  es_adoptado, imagen,id_usuario,adoptable, tamano, esterilizado, created_at) ".
             "VALUES(" .
             "'" . $nombre ."', ".
             "'" . $tipo ."', ".
@@ -182,8 +184,12 @@ class Mascota {
             "'" . $adoptado ."', ".
             "'" . $imagen ."', ".
             $id_usuario .", ".
-            $adoptable . ")";
-        //echo $this->_misql->sql;
+            $adoptable . ",'" .
+            $tamanio . "', " .
+            $esterilizado . ", " .
+            "'" . $fechaActual ."') ";
+
+            //echo $this->_misql->sql;
         $this->_misql->ejecutar();
         if($this->_misql->numeroAfectados())
             $idInsertado = $this->_misql->ultimoIdInsertado();

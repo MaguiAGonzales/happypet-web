@@ -102,12 +102,40 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="tbTamanio">Tamaño</label>
+                                <input type="text" class="form-control" id="tbTamanio" name="tamanio">
+                            </div>
+                            <div class="form-group">
                                 <label for="tbParticularidades">Particularidades</label>
                                 <input type="text" class="form-control" id="tbParticularidades" name="particularidades">
                             </div>
                             <div class="form-group">
                                 <label for="tbSalud">Salud</label>
                                 <input type="text" class="form-control" id="tbSalud" name="salud">
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label >Adoptado</label>
+                                    <div>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="adoptado" value="1"> SI
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="adoptado" value="0" checked> NO
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label>Esterilizado</label>
+                                    <div>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="esterilizado" value="1"> SI
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="esterilizado" value="0" checked> NO
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>

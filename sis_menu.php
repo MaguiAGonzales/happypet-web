@@ -16,13 +16,13 @@
                         <ul class="nav navbar-nav">
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="<?php echo $_SESSION["foto"] ?>" class="user-image" >
-                                    <span class="hidden-xs">ikarina</span>
+                                    <img src=" <?php echo "data:image/jpeg;base64," . $_SESSION["foto"]; ?>" class="user-image" >
+                                    <span class="hidden-xs"><?php echo $_SESSION["nombre"]; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="<?php echo $_SESSION["foto"] ?>" class="img-circle" >
+                                        <img src="<?php echo "data:image/jpeg;base64," . $_SESSION["foto"] ?>" class="img-circle" >
                                         <p>
                                             <?php echo $_SESSION["nombre"] . " " . $_SESSION["apellidos"] ?>
                                             <small><?php echo $_SESSION["ciudad"] ?></small>
