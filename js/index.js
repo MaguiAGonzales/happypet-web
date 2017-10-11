@@ -19,20 +19,44 @@ $(function () {
 
     var EXT = $(".listado-extraviados");
     EXT.waitMe({ text : 'Cargando' });
-    $.post("funciones/admin_extraviado.php", {f:"listar"}, function(d) {
+    $.post("funciones/admin_extraviado.php", {f:"listar_extraviado"}, function(d) {
         if (!d) {
             EXT.html("<div class='col-xs-12'>Ninguna mascota extraviada.</div>");
         }else {
             for(i=0; i<d.length;i++){
                 fila = d[i];
                 var item = $("#plantilla").clone();
-                item.find(".foto").attr("src", 'data:image/jpeg;base64,' + fila.imagen).attr("cod", fila.id);
+                if(fila.img == null)
+                    item.find(".foto").attr("src", 'data:image/jpeg;base64,' + fila.imagen).attr("cod", fila.id);
+                else
+                    item.find(".foto").attr("src", 'data:image/jpeg;base64,' + fila.imagen).attr("cod", fila.id);
                 item.find(".nombre").html(fila.nombre);
                 item.find(".anio").html(fechaIngAesp(fila.fecha));
                 EXT.append(item.html());
             }
         }
         EXT.waitMe("hide");
+    },'json');
+
+    var ENC = $(".listado-encontrados");
+    ENC.waitMe({ text : 'Cargando' });
+    $.post("funciones/admin_extraviado.php", {f:"listar_encontrado"}, function(d) {
+        if (!d) {
+            EXT.html("<div class='col-xs-12'>Ninguna mascota extraviada.</div>");
+        }else {
+            for(i=0; i<d.length;i++){
+                fila = d[i];
+                var item = $("#plantilla").clone();
+                if(fila.img == null)
+                    item.find(".foto").attr("src", 'data:image/jpeg;base64,' + fila.imagen).attr("cod", fila.id);
+                else
+                    item.find(".foto").attr("src", 'data:image/jpeg;base64,' + fila.img).attr("cod", fila.id);
+                item.find(".nombre").html(fila.titulo);
+                item.find(".anio").html(fechaIngAesp(fila.fecha));
+                ENC.append(item.html());
+            }
+        }
+        ENC.waitMe("hide");
     },'json');
 
 

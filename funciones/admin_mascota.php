@@ -57,6 +57,11 @@ switch ($_REQUEST["f"]) {
         }
         echo json_encode(array("success" => $ok, "msg" => $msg));
         break;
+    case 5:
+        $data = $oMas->editar($_REQUEST["id"]);
+        header('Content-Type: application/json;charset=utf-8');
+        echo json_encode($data);
+        break;
 }
 
 ?>

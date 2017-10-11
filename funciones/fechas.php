@@ -70,7 +70,10 @@ $largo=strlen($fechaSql);
 //y lo devuelve en formatto 24 horas
 function horaMinA24($horaMin){
     $hora24 = "";
-    list($hora, $minutos, $meridiano) = split("[: ]",$horaMin);
+//    list($hora, $minutos, $meridiano) = split("[: ]",$horaMin);
+    $hora = substr($horaMin, 0, 2);
+    $minutos = substr($horaMin, 3, 4);
+    $meridiano = substr($horaMin, -2);
     $meridiano = trim(strtolower(substr($meridiano,0,1)));
 
     if($meridiano=="p"){

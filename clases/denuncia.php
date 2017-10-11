@@ -33,7 +33,20 @@ class Denuncia {
         $filtro = $tipo == "TODAS" ? "" : " AND tipo='". $tipo ."' ";
         $filtro .= isset($data["id"]) ? " AND id_usuario=" . $data["id"] : "";
 
-        $this->_misql->sql = "SELECT * FROM denuncia WHERE 1=1  $filtro ORDER BY id desc";
+        $this->_misql->sql = "SELECT * FROM denuncia WHERE 1=1 AND estado=1 $filtro ORDER BY id desc";
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data;
+    }
+
+    public function listarweb($data){
+        $tipo = isset($data["tipo"]) ? $data["tipo"] : "TODAS";
+        $filtro = $tipo == "TODAS" ? "" : " AND tipo='". $tipo ."' ";
+        $filtro .= isset($data["id"]) ? " AND id_usuario=" . $data["id"] : "";
+
+        $this->_misql->sql = "SELECT * FROM denuncia WHERE 1=1 $filtro ORDER BY id desc";
         $this->_misql->conectar();
         $this->_misql->ejecutar();
         $data = $this->_misql->devolverArreglo();
@@ -53,7 +66,7 @@ class Denuncia {
     public function insertar($data) {
         $fechaActual = date("Y-m-d H:i:s");
         $this->_misql->conectar();
-        $this->_misql->sql = "INSERT INTO denuncia(tipo, fecha, titulo, descripcion, foto, telefono,  estado, id_usuario, created_at) ".
+        $this->_misql->sql = "INSERT INTO denuncia(tipo, fecha, titulo, descripcion, foto, telefono,  estado, coordenadas, direccion, id_usuario, created_at) ".
             "VALUES(" .
             "'" . $data["tipo"] ."', ".
             "'" . fechaEspIng($data["fecha"]) ."', ".
@@ -62,6 +75,8 @@ class Denuncia {
             "'" . $data["foto"] ."', ".
             "'" . $data["telefono"] ."', ".
             "'" . $data["estado"] ."', ".
+            "'" . $data["lugarDenuncia"] ."', ".
+            "'" . $data["direccionDenuncia"] ."', ".
             $data["id_usuario"] . ", " .
             "'" . $fechaActual ."') ";
         //echo $this->_misql->sql;
@@ -72,6 +87,14 @@ class Denuncia {
             $idInsertado = 0;
         $this->_misql->cerrar();
         return $idInsertado;
+    }
+
+    public function actualizar($data) {
+        $this->_misql->conectar();
+        $this->_misql->sql = "UPDATE denuncia SET estado = ". $data["estado"]. " WHERE id = ".$data["id"];
+        $this->_misql->ejecutar();
+        $this->_misql->cerrar();
+        return 1;
     }
 
     public function eliminar($id) {

@@ -8,17 +8,17 @@ $(function () {
         responsive: true,
         lengthMenu: [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "Todo"] ],
         ajax:{
-            url :"funciones/admin_mascota.php?f=1",
+            url :"funciones/admin_usuario.php?f=3",
             type: "post"
         },
         "dom": "<'row text-sm'<'col-xs-6'B><'col-xs-6 text-right'f>>t<'row text-sm'<'col-xs-6 col-sm-4'<'#tbR'>i><'col-xs-6 col-sm-4 text-center'l><'col-xs-12 col-sm-4 text-right'p>>",
         buttons: [
             {
-                text: "<span class='glyphicon glyphicon-plus'></span> Nueva Mascota",
+                text: "<span class='glyphicon glyphicon-plus'></span> Nuevo Usuario",
                 className: "btn-primary btn-agregar",
                 action: function ( e, dt, node, config ) {
                     $("#tbId").val(0);
-                    mMas.find(".modal-title").html("Nueva Mascota");
+                    mMas.find(".modal-title").html("Nuevo Usuario");
                     mMas.modal('show');
                 }
             }
@@ -34,13 +34,20 @@ $(function () {
         }],
         columns: [
             { "data": "id", "visible": false},
-            { "data": "imagen", orderable: false, "render": function(data, type, row) {
+            { "data": "foto", orderable: false, "render": function(data, type, row) {
                 return '<img src="data:image/jpeg;base64,'+data+'" width="90" class="img-bordered-sm" data-lightbox="' + row.id + '" data-title="' + row.nombre + '" />';
             }},
             { "data": "nombre"},
-            { "data": "tipo_mascota", className:"hidden-xs"  },
-            { "data": "sexo" },
-            { "data": "ano_nacimiento"},
+            { "data": "apellidos", className:"hidden-xs"  },
+            { "data": "correo" },
+            { "data": "celular"},
+            { "data": "direccion"},
+            { "data": "admin", orderable: false, "render": function(data, type, row) {
+                if(row.admin == 1)
+                    return 'Administrador';
+                else
+                    return 'Usuario';
+            }},
             { "data": null, "orderable": false}
         ],
         order: [[0, "desc"]],
@@ -98,7 +105,7 @@ $(function () {
 //        mCli.modal('show');
     });
 
-    $("#btnGuardarMascota").on("click",function(){
+    $("#btnGuardarUsuario").on("click",function(){
         //obtiene la foto
         if(typeof($("#avatar-1")[0].files[0]) !== "undefined") {
             var imgAvatar = $("#avatar-1")[0].files[0];
@@ -110,19 +117,29 @@ $(function () {
                 img64 = img64.split(',')[1];
 
                 con = $("#fMascota").parents(".modal-content");
-                con.waitMe({text: 'Guardando Mascota...'});
+                con.waitMe({text: 'Guardando Usuario...'});
 
                 var data = fMas.serializeArray();
-                data.push({name: 'f', value: $("#tbId").val() == 0 ? "setImage" : 3});
-                data.push({name: 'adoptado', value: 0});
-                data.push({name: 'adoptable', value: 1});
-                data.push({name: 'id_usuario', value: $("#tbIdUsuario").val()});
-                data.push({name: 'imagen', value: img64});
+                data.push({name: 'f', value: $("#tbId").val() == 0 ? "setImage" : 6});
+                data.push({name: 'nombre', value: $("#tbNombre").val()});
+                data.push({name: 'apellidos', value: $("#tbApellidos").val()});
+                data.push({name: 'ciudad', value: $("#tbCiudad").val()});
+                data.push({name: 'correo', value: $("#tbCorreo").val()});
+                data.push({name: 'celular', value: $("#tbCelular").val()});
+                data.push({name: 'foto', value: img64});
+                data.push({name: 'contrasenia', value: $("#tbContrasenia").val()});
+                data.push({name: 'dni', value: $("#tbDni").val()});
+                data.push({name: 'ocupacion', value: $("#tbOcupacion").val()});
+                data.push({name: 'fecha_nacimiento', value: $("#tbFecha_nacimiento").val()});
+                data.push({name: 'telefono', value: $("#tbTelefono").val()});
+                data.push({name: 'direccion', value: $("#tbDireccion").val()});
+                data.push({name: 'referencia', value: $("#tbReferencia").val()});
+                data.push({name: 'administrador', value: $("#tbRol").val()});
                 data.push({name: 'id', value: $("#tbId").val()});
 
                 console.log(data);
 
-                $.post("funciones/admin_mascota.php", data, function (d) {
+                $.post("funciones/admin_usuario.php", data, function (d) {
                     if (!d.success) {
                         toastr["error"](d.msg);
                     }
@@ -147,16 +164,26 @@ $(function () {
                 alert("No se selecciono imagen");
             else{
                 var data = fMas.serializeArray();
-                data.push({name: 'f', value: $("#tbId").val() == 0 ? "setImage" : 3});
-                data.push({name: 'adoptado', value: 0});
-                data.push({name: 'adoptable', value: 1});
-                data.push({name: 'id_usuario', value: $("#tbIdUsuario").val()});
-                data.push({name: 'imagen', value: ''});
+                data.push({name: 'f', value: $("#tbId").val() == 0 ? "setImage" : 6});
+                data.push({name: 'nombre', value: $("#tbNombre").val()});
+                data.push({name: 'apellidos', value: $("#tbApellidos").val()});
+                data.push({name: 'ciudad', value: $("#tbCiudad").val()});
+                data.push({name: 'correo', value: $("#tbCorreo").val()});
+                data.push({name: 'celular', value: $("#tbCelular").val()});
+                data.push({name: 'foto', value:''});
+                data.push({name: 'contrasenia', value: $("#tbContrasenia").val()});
+                data.push({name: 'dni', value: $("#tbDni").val()});
+                data.push({name: 'ocupacion', value: $("#tbOcupacion").val()});
+                data.push({name: 'fecha_nacimiento', value: $("#tbFecha_nacimiento").val()});
+                data.push({name: 'telefono', value: $("#tbTelefono").val()});
+                data.push({name: 'direccion', value: $("#tbDireccion").val()});
+                data.push({name: 'referencia', value: $("#tbReferencia").val()});
+                data.push({name: 'administrador', value: $("#tbRol").val()});
                 data.push({name: 'id', value: $("#tbId").val()});
 
                 console.log(data);
 
-                $.post("funciones/admin_mascota.php", data, function (d) {
+                $.post("funciones/admin_usuario.php", data, function (d) {
                     if (!d.success) {
                         toastr["error"](d.msg);
                     }
@@ -169,17 +196,16 @@ $(function () {
                 }, 'json');
             }
         }
-        
     });
 
     dtMas.on('click', '.dt-btn-eliminar', function () {
         con = $('#dtMascotas').parents(".dataTables_wrapper");
 
         var da = dtMas.row($(this).parents('tr')).data();
-        bootbox.confirm("¿Seguro que desea eliminar el registro de la Mascota : <b>" + da.nombre + "</b>?", function(rpta){
+        bootbox.confirm("¿Seguro que desea eliminar el registro del Usuario : <b>" + da.nombre + "</b>?", function(rpta){
             if(rpta){
                 con.waitMe({ text: 'Eliminando...' });
-                $.post("funciones/admin_mascota.php", {"f": 4, id: da.id }, function(d){
+                $.post("funciones/admin_usuario.php", {"f": 4, id: da.id }, function(d){
                     if(!d.success){
                         toastr["error"](d.msg);
                     }else{
@@ -198,28 +224,25 @@ $(function () {
         var da = dtMas.row($(this).parents('tr')).data();
 
         $("#tbId").val(da.id);
-        mMas.find(".modal-title").html("Editar Mascota");
+        mMas.find(".modal-title").html("Editar Usuario");
         mMas.modal('show');
 
-        $.post("funciones/admin_mascota.php", {"f": 5, id: da.id }, function(d){
+        $.post("funciones/admin_usuario.php", {"f": 5, id: da.id }, function(d){
             $("#tbNombre").val(d.nombre);
-            $("div.id_tipo select").val(d.tipo_mascota);
-            $("div.id_macho select").val(d.sexo);
-            $("#tbAnio").val(d.ano_nacimiento);
-            $("div.id_tamanio select").val(d.tamano);
-            $("#tbParticularidades").val(d.particularidades);
-            $("#tbSalud").val(d.salud);
-            if(d.adoptable === "1")
-                $("#adoptado_si").prop('checked', true);
-            else
-                $("#adoptado_no").prop('checked', true);
+            $("#tbApellidos").val(d.apellidos);
+            $("#tbCiudad").val(d.ciudad);
+            $("#tbCorreo").val(d.correo);
+            $("#tbCelular").val(d.celular);
+            $("#tbDni").val(d.dni);
+            $("#tbOcupacion").val(d.ocupacion);
+            $("#tbFecha_nacimiento").val(d.fecha_nacimiento);
+            $("#tbTelefono").val(d.telefono);
+            $("#tbDireccion").val(d.direccion);
+            $("#tbReferencia").val(d.referencia);
+            $("#tbContrasenia").val(d.contrasenia);
+            $("div.id_rol select").val(d.admin);
 
-            if(d.esterilizado === "1")
-                $("#esterilizado_si").prop('checked', true);
-            else
-                $("#esterilizado_no").prop('checked', true);
-
-            $("#imgPreview").attr("src","data:image/jpeg;base64,"+d.imagen);
+            $("#imgPreview").attr("src","data:image/jpeg;base64,"+d.foto);
 
         });
     });

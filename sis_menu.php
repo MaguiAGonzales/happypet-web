@@ -53,6 +53,7 @@
                         <li class=""><a href="index.php"><i class="fa fa-home text-blue"></i> <span>Inicio</span></a></li>
                         <li><a href="mismascotas.php"><i class="fa fa-angellist "></i> <span>Mis Mascotas</span></a></li>
                         <li><a href="adopciones.php"><i class="fa fa-heart"></i> <span>Adopciones</span></a></li>
+                        <li><a href="visitas_mensuales.php"><i class="fa fa-clock-o"></i> <span>Visitas Mensuales</span></a></li>
                         <!--<li><a href="notificaciones.php"><i class="fa fa-bell"></i> <span>Notificaciones</span></a></li>-->
                         <li class="treeview active">
                             <a href="#">
@@ -66,6 +67,7 @@
                             </ul>
                         </li>                                                
                         <li><a href="eventos.php"><i class="fa fa-calendar"></i> <span>Eventos</span></a></li>
+                        <li><a href="usuarios.php"><i class="fa fa-users"></i> <span>Usuarios</span></a></li>
                     </ul>
                 </section>
             </aside>

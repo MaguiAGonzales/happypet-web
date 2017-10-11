@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Mis Mascotas | SV</title>
+        <title>Usuarios | SV</title>
         <?php include_once("./sis_css.php"); ?>
         <link rel="stylesheet" href="css/fileinput.min.css">
         <link rel="stylesheet" href="css/lightbox.min.css">
@@ -34,7 +34,7 @@
                 <section class="content">               
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">MIS MASCOTAS</h3>
+                            <h3 class="box-title">Usuarios</h3>
                         </div>
                         <div class="box-body">
                             <div class="container-fluid">
@@ -44,9 +44,11 @@
                                             <th>id</th>
                                             <th style="width: 115px">Foto</th>
                                             <th>Nombre</th>
-                                            <th>Tipo</th>
-                                            <th>Sexo</th>
-                                            <th>Año Nac.</th>
+                                            <th>Apellido</th>
+                                            <th>Correo</th>
+                                            <th>Celular</th>
+                                            <th>Direcci&oacute;n</th>
+                                            <th>Rol</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -78,82 +80,80 @@
                                 <div class="form-group col-sm-6">
                                     <label for="tbNombre">Nombre</label>
                                     <input type="text" class="form-control" id="tbNombre" name="nombre" autofocus>
-                                    <input type="hidden" id="tbId">
+                                    <input type="hidden" id="tbId" value="0">
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label for="cbTipo">Tipo</label>
-                                    <div class="id_tipo">
-                                        <select id="cbTipo" name="tipo" class="form-control">
-                                            <option>Perro</option>
-                                            <option>Gato</option>
-                                        </select>
-                                    </div>
+                                    <label for="tbNombre">Apellidos</label>
+                                    <input type="text" class="form-control" id="tbApellidos" name="apellidos" autofocus>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-sm-6">
-                                    <label for="cbSexo">sexo</label>
-                                    <div class="id_macho">
-                                        <select id="cbSexo" name="sexo" class="form-control">
-                                            <option>Hembra</option>
-                                            <option>Macho</option>
-                                        </select>
-                                    </div>
+                                    <label for="tbAnio">Ciudad</label>
+                                    <input type="text" class="form-control" id="tbCiudad" name="ciudad">
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label for="tbAnio">Año Nacimiento</label>
-                                    <input type="text" class="form-control" id="tbAnio" name="anio">
+                                    <label for="tbAnio">Correo</label>
+                                    <input type="text" class="form-control" id="tbCorreo" name="correo">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-sm-6">
-                                    <label for="cbTamanio">Tamaño</label>
-                                    <div class="id_tamanio">
-                                        <select id="cbTamanio" name="tamanio" class="form-control">
-                                            <option>pequeño</option>
-                                            <option>mediano</option>
-                                            <option>grande</option>
-                                        </select>
-                                    </div>
+                                    <label for="tbAnio">Celular</label>
+                                    <input type="text" class="form-control" id="tbCelular" name="celular">
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="tbParticularidades">Particularidades</label>
-                                <input type="text" class="form-control" id="tbParticularidades" name="particularidades">
-                            </div>
-                            <div class="form-group">
-                                <label for="tbSalud">Salud</label>
-                                <input type="text" class="form-control" id="tbSalud" name="salud">
+                                <div class="form-group col-sm-6">
+                                    <label for="tbAnio">DNI</label>
+                                    <input type="text" class="form-control" id="tbDni" name="dni">
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-sm-6">
-                                    <label >Adoptado</label>
-                                    <div>
-                                        <label class="radio-inline">
-                                            <input id="adoptado_si" type="radio" name="adoptado" value="1"> SI
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input id="adoptado_no" type="radio" name="adoptado" value="0"> NO
-                                        </label>
-                                    </div>
+                                    <label for="tbAnio">Ocupacion</label>
+                                    <input type="text" class="form-control" id="tbOcupacion" name="ocupacion">
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label>Esterilizado</label>
-                                    <div>
-                                        <label class="radio-inline">
-                                            <input id="esterilizado_si" type="radio" name="esterilizado" value="1"> SI
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input id="esterilizado_no" type="radio" name="esterilizado" value="0"> NO
-                                        </label>
-                                    </div>
+                                    <label for="tbAnio">Fecha de Nacimiento</label>
+                                    <input type="text" class="form-control" id="tbFecha_nacimiento" name="fecha_nacimiento">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label for="tbAnio">Telefono</label>
+                                    <input type="text" class="form-control" id="tbTelefono" name="telefono">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="tbAnio">Direccion</label>
+                                    <input type="text" class="form-control" id="tbDireccion" name="direccion">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label for="tbAnio">Referencia</label>
+                                    <input type="text" class="form-control" id="tbReferencia" name="referencia">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="tbAnio">Contrase&ntilde;ia</label>
+                                    <input type="password" class="form-control" id="tbContrasenia" name="contrasenia">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label for="tbAnio">Rol</label>
+                                    <div class="id_rol">
+
+                                    <select class="selectpicker form-control" id="tbRol" name="Rol">
+                                        <option value="1">Administrador</option>
+                                        <option value="0">Usuario</option>
+                                    </select>
+                                </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="reset" class="btn btn-default" data-dismiss="modal" tabindex="-1">Cancelar</button>
-                        <button type="button" id="btnGuardarMascota" class="btn btn-primary">Guardar</button>                         
+                        <button type="button" id="btnGuardarUsuario" class="btn btn-primary">Guardar</button>
                     </div>
                 </div>
             </div>
@@ -164,7 +164,7 @@
         
         <script type="text/javascript" src="js/fileinput.min.js"></script>
         <script type="text/javascript" src="js/mini-lightbox.min.js"></script>
-        <script type="text/javascript" src="js/mismascotas.js"></script>
+        <script type="text/javascript" src="js/usuario.js"></script>
         
     </body>
 </html>

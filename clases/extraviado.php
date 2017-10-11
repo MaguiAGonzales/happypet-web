@@ -14,8 +14,53 @@ class Extraviado {
         $this->_misql = new MiSQL;
     }
 
-    public function listar(){
-        $this->_misql->sql = "SELECT * FROM v_extraviado WHERE encontrado=0 ORDER BY fecha desc";
+	public function listar(){
+        $this->_misql->sql = "SELECT * FROM v_extraviado WHERE extraviado_encontrado = 0 ORDER BY fecha desc";
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data;
+    }
+    
+	public function listar_extraviado(){
+        $this->_misql->sql = "SELECT * FROM v_extraviado WHERE encontrado=0 AND extraviado_encontrado = 0 ORDER BY fecha desc";
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data;
+    }
+
+    public function listar_encontrado(){
+        $this->_misql->sql = "SELECT * FROM v_extraviado WHERE encontrado=1 AND extraviado_encontrado = 0 ORDER BY fecha desc";
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data;
+    }
+	
+	public function mi_lista($id){
+        $this->_misql->sql = "SELECT * FROM v_extraviado WHERE id_mascota IN (SELECT id FROM mascotas WHERE id_usuario = " . $id . ") AND extraviado_encontrado = 0 ORDER BY fecha desc";
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data;
+    }
+    
+	public function mi_lista_extraviado($id){
+        $this->_misql->sql = "SELECT * FROM v_extraviado WHERE encontrado=0 AND id_mascota IN (SELECT id FROM mascotas WHERE id_usuario = " . $id . ") AND extraviado_encontrado = 0 ORDER BY fecha desc";
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data;
+    }
+
+    public function mi_listar_encontrado($id){
+        $this->_misql->sql = "SELECT * FROM v_extraviado WHERE encontrado=1 AND id_mascota IN (SELECT id FROM mascotas WHERE id_usuario = " . $id . ") AND extraviado_encontrado = 0 ORDER BY fecha desc";
         $this->_misql->conectar();
         $this->_misql->ejecutar();
         $data = $this->_misql->devolverArreglo();

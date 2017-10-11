@@ -9,9 +9,25 @@ switch ($_REQUEST["f"]) {
         header('Content-Type: application/json;charset=utf-8');        
         echo json_encode($data);
         break;
+    case "listarweb":
+        $data = $oDen->listarweb($_REQUEST);
+        header('Content-Type: application/json;charset=utf-8');
+        echo json_encode($data);
+        break;
+    case "actualizar":
+        $idInsetado = $oDen->actualizar($_POST);
+        if ($idInsetado > 0) {
+            $ok = true;
+            $msg = "Activado para mostrar.";
+        } else {
+            $ok = false;
+            $msg = "Desactivado para mostrar.";
+        }
+        echo json_encode(array("success" => $ok, "msg" => $msg));
+        break;
 
     case "insertar":
-        $idInsetado = $oDen->insertar($_POST);
+        $idInsetado = $oDen->insertar($_REQUEST);
         if ($idInsetado > 0) {
             $ok = true;
             $msg = "Denuncia registrada correctamente.";

@@ -59,6 +59,9 @@
                                     <div class="text-right">
                                         <span class="text-muted">Hora :</span> <span class="hora">10:30 a.m.</span>
                                     </div>
+                                    <div class="shareFb">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -66,12 +69,18 @@
                 </section>
             </div>
 
-
             <?php include_once("sis_pie.php"); ?>
 
         </div>
         <?php include_once("./sis_js.php"); ?>
         <script type="text/javascript" src="js/eventos.js"></script>
-
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.10&appId=708232555880412";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
     </body>
 </html>

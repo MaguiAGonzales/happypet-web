@@ -381,6 +381,7 @@ CREATE TABLE `v_adopcion` (
 ,`fecha` datetime
 ,`estado` char(2)
 ,`id_usuario` int(11)
+,`id_mascota` int(11)
 ,`ano_nacimiento` int(11)
 ,`tipo_mascota` varchar(15)
 ,`sexo` varchar(15)

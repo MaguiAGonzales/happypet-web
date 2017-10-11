@@ -1,7 +1,7 @@
 $(function () {
     var con = $("section.content");
     con.waitMe({ text : 'Cargando' });
-    $.post("funciones/admin_denuncia.php", {f:"listar", tipo:$("#tbhTipo").val()}, function(d) {
+    $.post("funciones/admin_denuncia.php", {f:"listarweb", tipo:$("#tbhTipo").val()}, function(d) {
         if (!d) {
             $(".listado").html("Ninguna denuncia que mostrar.");
         }else {

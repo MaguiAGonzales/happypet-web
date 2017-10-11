@@ -1,7 +1,7 @@
 <?php
-$bd_servidor = "127.0.0.1";
-$bd_baseDatos ="happypet";
-$bd_usuario ="root";
-$bd_clave ="";
+$bd_servidor = "localhost";
+$bd_baseDatos ="edinsonj_happypet";
+$bd_usuario ="edinsonj_happype";
+$bd_clave ="hfx6iyOMkeSx";
 
 include_once "mysql.php";

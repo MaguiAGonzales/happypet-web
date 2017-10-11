@@ -5,7 +5,9 @@ mb_internal_encoding('UTF-8');
 
 session_start();
 
-class Mascota {
+include_once("../funciones/fechas.php");
+
+class Visitas_mensuales {
 
     private $_misql;
     public $usuario;
@@ -22,9 +24,9 @@ class Mascota {
 
         extract($postData);
 
-        $aColumns = array('id', 'imagen', 'nombre', 'tipo_mascota', 'sexo', 'ano_nacimiento');
+        $aColumns = array('id_mascota', 'imagen', 'nombre', 'usuario', 'fecha', 'estado', 'tipo_mascota', 'sexo', 'ano_nacimiento', 'dni', 'direccion', 'referencia', 'resultado', 'id_test', 'id_visita_adopcion','fecha_adopcion','hora_adopcion','descripcion_adopcion', "telefono", "celular", "ciudad", "ocupacion", "id_horario");
         $sIndexColumn = 'id';
-        $sTable = 'v_mascotas_disponibles';
+        $sTable = 'v_adopcion';
 
         $gaSql['user']     = $bd_usuario;
         $gaSql['password'] = $bd_clave;
@@ -98,9 +100,9 @@ class Mascota {
         }
 
         if (!empty($aFilteringRules)) {
-            $sWhere = " WHERE ".implode(" AND ", $aFilteringRules);
+            $sWhere = " WHERE estado = 'TE' AND ".implode(" AND ", $aFilteringRules);
         } else {
-            $sWhere = "";
+            $sWhere = " WHERE estado = 'TE' ";
         }
 
         $aQueryColumns = array();
@@ -143,11 +145,20 @@ class Mascota {
 
         return json_encode( $output );
     }
-    
+
+    public function info($id){
+        $this->_misql->sql = "SELECT * FROM adopciones WHERE id=" . $id;
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data[0];
+    }
+
     public function listar($data){
-        $filtro = isset($data["id_usuario"])? " WHERE id_usuario=" . $data["id_usuario"] : "";
-        $this->_misql->sql = "SELECT id, nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento, imagen, id_usuario, es_adoptado, esterilizado, tamano ".
-            "FROM mascotas $filtro ORDER BY id desc";
+        $filtro = (isset($data["id_usuario"]) ? "WHERE id_usuario =" . $data["id_usuario"] : "");
+        $this->_misql->sql = "SELECT * FROM v_adopcion ". $filtro ." ORDER BY id desc";
+//        echo $this->_misql->sql;
         $this->_misql->conectar();
         $this->_misql->ejecutar();
         $data = $this->_misql->devolverArreglo();
@@ -155,62 +166,85 @@ class Mascota {
         return $data;
     }
 
-    public function insertar($data) {
-        $nombre = htmlentities($data["nombre"]);
-        $tipo = htmlentities($data["tipo"]);
-        $sexo = htmlentities($data["sexo"]);
-        $anio = htmlentities($data["anio"]);
-        //$particilaridades = htmlentities($data["particularidades"]);
-        $particilaridades = $data["particularidades"];
-        //$salud = htmlentities($data["salud"]);
-        $salud = $data["salud"];
-        $tamanio = $data["tamanio"];
-        $adoptado = htmlentities($data["adoptado"]);
-        $esterilizado = htmlentities($data["esterilizado"]);
-        $imagen = htmlentities($data["imagen"]);
-        $id_usuario = $data["id_usuario"];
-        $adoptable = $data["adoptable"];
+    public function listarVisitas($data){
+        $this->_misql->sql = "SELECT * FROM visita_mensual WHERE id_mascota = ". $data["id_mascota"] ." ORDER BY id desc";
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data;
+    }
 
+    public function listarDisponibles($data){
+        $filtro = (isset($data["id_usuario"]) ? "WHERE id_usuario =" . $data["id_usuario"] : "");
+        $this->_misql->sql = "SELECT id, nombre, ano_nacimiento, imagen, tipo_mascota, sexo, particularidades, salud ".
+            "FROM v_mascotas_disponibles ". $filtro ." ORDER BY id desc";
+//        echo $this->_misql->sql;
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data;
+    }
+
+    public function visitaAdopcion($data) {
         $fechaActual = date("Y-m-d H:i:s");
         $this->_misql->conectar();
-        $this->_misql->sql = "INSERT INTO mascotas(nombre, tipo_mascota, sexo, particularidades, salud, ano_nacimiento,  es_adoptado, imagen,id_usuario,adoptable, tamano, esterilizado, created_at) ".
+        $this->_misql->sql = "INSERT INTO visita_adopcion(fecha,hora,descripcion,created_at) ".
             "VALUES(" .
-            "'" . $nombre ."', ".
-            "'" . $tipo ."', ".
-            "'" . $sexo ."', ".
-            "'" . $particilaridades ."', ".
-            "'" . $salud ."', ".
-            $anio . ", " .
-            "'" . $adoptado ."', ".
-            "'" . $imagen ."', ".
-            $id_usuario .", ".
-            $adoptable . ",'" .
-            $tamanio . "', " .
-            $esterilizado . ", " .
-            "'" . $fechaActual ."') ";
-
-            //echo $this->_misql->sql;
+            "'" . fechaEspIng($data["fecha"]). "', " .
+            "'" . horaMinA24($data["hora"]) . "', " .
+            "'" . $data["descripcion"] . "', " .
+            "'" . $fechaActual . "') ";
         $this->_misql->ejecutar();
-        if($this->_misql->numeroAfectados())
+        if($this->_misql->numeroAfectados()) {
             $idInsertado = $this->_misql->ultimoIdInsertado();
-        else
+            $this->_misql->sql = "UPDATE adopciones SET id_visita_adopcion = ". $idInsertado . ", estado='TE' " . " WHERE id = " . $data["ida"];
+            $this->_misql->ejecutar();
+        }else
             $idInsertado = 0;
         $this->_misql->cerrar();
         return $idInsertado;
     }
 
-    public function insertardemo($data) {
-        $nombre = htmlentities($data["nombre"]);
-        $tipo = htmlentities($data["tipo"]);
-        $imagen = htmlentities($data["imagen"]);
-        
+    public function insertar($data) {
+        $nombre_voluntario = htmlentities($data["nombre_voluntario"]);
+        $nombre_persona_atiende = htmlentities($data["nombre_persona_atiende"]);
+        $parentesco = htmlentities($data["parentesco"]);
+        $telefono = htmlentities($data["telefono"]);
+        $p1 = htmlentities($data["p1"]);
+        $r1= htmlentities($data["r1"]);
+        $p2 = $data["p2"];
+        $r2 = htmlentities($data["r2"]);
+        $p3 = htmlentities($data["p3"]);
+        $r3 = $data["r3"];
+        $p4 = htmlentities($data["p4"]);
+        $r4 = htmlentities($data["r4"]);
+        $veterinaria = htmlentities($data["veterinaria"]);
+        $fecha_esterilizacion = htmlentities($data["fecha_esterilizacion"]);
+        $id_mascota = htmlentities($data["id_mascota"]);
+
         $fechaActual = date("Y-m-d H:i:s");
         $this->_misql->conectar();
-        $this->_misql->sql = "INSERT INTO mascotas(nombre, tipo_mascota,imagen) ".
+        $this->_misql->sql = "INSERT INTO visita_mensual(nombre_voluntario, nombre_persona_atiende, parentesco, telefono, p1, r1, p2,  r2, p3, r3, p4, r4, veterinaria, fecha_esterilizacion, id_mascota, created_at) ".
             "VALUES(" .
-            "'" . $nombre ."', ".
-            "'" . $tipo ."', ".
-            "'" . $imagen ."') ";
+            "'" . $nombre_voluntario ."', ".
+            "'" . $nombre_persona_atiende ."', ".
+            "'" . $parentesco ."', ".
+            "'" . $telefono ."', ".
+            "'" . $p1 ."', ".
+            "'" . $r1 ."', ".
+            "'" . $p2 ."', ".
+            "'" . $r2 ."', ".
+            "'" . $p3 ."', ".
+            "'" . $r3 ."', ".
+            "'" . $p4 ."', ".
+            "'" . $r4 ."', ".
+            "'" . $veterinaria ."', ".
+            "'" . $fecha_esterilizacion ."', ".
+            "'" . $id_mascota ."', ".
+            "'" . $fechaActual ."') ";
+
         //echo $this->_misql->sql;
         $this->_misql->ejecutar();
         if($this->_misql->numeroAfectados())
@@ -220,7 +254,8 @@ class Mascota {
         $this->_misql->cerrar();
         return $idInsertado;
     }
-    
+
+
 /*
     public function actualizar($data) {
         $dni = isset($data["dni"]) ? $data["dni"] : "";
@@ -255,75 +290,67 @@ class Mascota {
         $this->_misql->cerrar();
         return $nro;
     }
-
 */
-    public function eliminar($id) {
-        $this->_misql->conectar();
-        $this->_misql->sql = "DELETE FROM mascotas WHERE id=$id";
-        $rs = $this->_misql->ejecutar();
-        $this->_misql->cerrar();
-        return $rs;
-    }
-    public function editar($id){
-        $this->_misql->sql = "SELECT * FROM mascotas WHERE id=" . $id;
-        $this->_misql->conectar();
-        $this->_misql->ejecutar();
-        $data = $this->_misql->devolverArreglo();
-        $this->_misql->liberarYcerrar();
-        return $data[0];
-    }
 
-    public function actualizar($data) {
-        $nombre = htmlentities($data["nombre"]);
-        $tipo = htmlentities($data["tipo"]);
-        $sexo = htmlentities($data["sexo"]);
-        $anio = htmlentities($data["anio"]);
-        $particilaridades = htmlentities($data["particularidades"]);
-        $salud = htmlentities($data["salud"]);
-        $tamanio = htmlentities($data["tamanio"]);
-        $adoptado = htmlentities($data["adoptado"]);
-        $esterilizado = htmlentities($data["esterilizado"]);
-        $imagen = htmlentities($data["imagen"]);
-        $id_usuario = $data["id_usuario"];
-        $adoptable = $data["adoptable"];
-        $id = $data["id"];
-
+    public function save_editar($data) {
+        $nombre_voluntario = htmlentities($data["nombre_voluntario"]);
+        $nombre_persona_atiende = htmlentities($data["nombre_persona_atiende"]);
+        $parentesco = htmlentities($data["parentesco"]);
+        $telefono = htmlentities($data["telefono"]);
+        $p1 = htmlentities($data["p1"]);
+        $r1= htmlentities($data["r1"]);
+        $p2 = $data["p2"];
+        $r2 = htmlentities($data["r2"]);
+        $p3 = htmlentities($data["p3"]);
+        $r3 = $data["r3"];
+        $p4 = htmlentities($data["p4"]);
+        $r4 = htmlentities($data["r4"]);
+        $veterinaria = htmlentities($data["veterinaria"]);
+        $fecha_esterilizacion = htmlentities($data["fecha_esterilizacion"]);
+        $id_mascota = htmlentities($data["id_mascota"]);
+        $id = htmlentities($data["id"]);
         $fechaActual = date("Y-m-d H:i:s");
         $this->_misql->conectar();
-        if(!empty($data["imagen"])) {
-            $this->_misql->sql = "UPDATE mascotas SET nombre = '" . $nombre . "', " .
-                "tipo_mascota = '" . $tipo . "', " .
-                "sexo = '" . $sexo . "', " .
-                "ano_nacimiento = '" . $anio . "', " .
-                "particularidades = '" . $particilaridades . "', " .
-                "imagen = '" . $imagen . "', " .
-                "salud = '" . $salud . "', " .
-                "tamano = '" . $tamanio . "', " .
-                "es_adoptado = '" . $adoptado . "', " .
-                "esterilizado = '" . $esterilizado . "', " .
-                "adoptable = '" . $adoptable . "', " .
-                "id_usuario = '" . $id_usuario . "', " .
-                "updated_at = '" . $fechaActual . "'" .
-                "WHERE id = " . $id;
-        }else{
-            $this->_misql->sql = "UPDATE mascotas SET nombre = '" . $nombre . "', " .
-                "tipo_mascota = '" . $tipo . "', " .
-                "sexo = '" . $sexo . "', " .
-                "ano_nacimiento = '" . $anio . "', " .
-                "particularidades = '" . $particilaridades . "', " .
-                "salud = '" . $salud . "', " .
-                "tamano = '" . $tamanio . "', " .
-                "es_adoptado = '" . $adoptado . "', " .
-                "esterilizado = '" . $esterilizado . "', " .
-                "adoptable = '" . $adoptable . "', " .
-                "id_usuario = '" . $id_usuario . "', " .
-                "updated_at = '" . $fechaActual . "'" .
-                "WHERE id = " . $id;
-        }
+
+        $this->_misql->sql = "UPDATE visita_mensual SET nombre_voluntario = '" . $nombre_voluntario . "', " .
+            "nombre_persona_atiende = '" . $nombre_persona_atiende . "', " .
+            "parentesco = '" . $parentesco . "', " .
+            "telefono = '" . $telefono . "', " .
+            "p1 = '" . $p1 . "', " .
+            "r1 = '" . $r1 . "', " .
+            "p2 = '" . $p2 . "', " .
+            "r2 = '" . $r2 . "', " .
+            "p3 = '" . $p3 . "', " .
+            "r3 = '" . $r3 . "', " .
+            "p4 = '" . $p4 . "', " .
+            "r4 = '" . $r4 . "', " .
+            "veterinaria = '" . $veterinaria . "', " .
+            "fecha_esterilizacion = '" . $fecha_esterilizacion . "', " .
+            "id_mascota = '" . $id_mascota . "', " .
+            "updated_at = '" . $fechaActual . "' " .
+            "WHERE id = " . $id;
+
 
         //echo $this->_misql->sql;
         $this->_misql->ejecutar();
 
         return $id;
+    }
+
+    public function eliminar($data) {
+        $this->_misql->conectar();
+        $this->_misql->sql = "DELETE FROM visita_mensual WHERE id=".$data["id"];
+        $rs = $this->_misql->ejecutar();
+        $this->_misql->cerrar();
+        return $rs;
+    }
+
+    public function editar($id){
+        $this->_misql->sql = "SELECT * FROM visita_mensual WHERE id=" . $id;
+        $this->_misql->conectar();
+        $this->_misql->ejecutar();
+        $data = $this->_misql->devolverArreglo();
+        $this->_misql->liberarYcerrar();
+        return $data[0];
     }
 }

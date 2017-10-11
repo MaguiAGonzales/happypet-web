@@ -59,6 +59,17 @@
                                                 <label for="tbDescripcion">Descripción</label>
                                                 <textarea id="tbDescripcion" rows="2" class="form-control" name="descripcion"></textarea>
                                             </div>
+                                            <div class="form-group">
+                                                <label for="tbDescripcion">Activar</label>
+                                                <div>
+                                                    <label class="radio-inline">
+                                                        <input id="dbSi" type="radio" name="visible" value="1"> SI
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input id="dbNo" type="radio" name="visible" value="0"> NO
+                                                    </label>
+                                                </div>
+                                            </div>
                                         </fieldset>
                                         <fieldset class="form-group">
                                             <legend>Información del Usuario</legend>

@@ -80,28 +80,13 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body no-padding">
-                                    <ul class="users-list clearfix">                                    
-                                        <li>
-                                            <img src="img/user5-128x128.jpg" alt="User Image">
-                                            <a class="users-list-name" href="#">Sarah</a>
-                                            <span class="users-list-date">14 Jan</span>
-                                        </li>
-                                        <li>
-                                            <img src="img/user1-128x128.jpg" alt="User Image">
-                                            <a class="users-list-name" href="#">Alexander Pierce</a>
-                                            <span class="users-list-date">Today</span>
-                                        </li>
-                                        <li>
-                                            <img src="img/user3-128x128.jpg" alt="User Image">
-                                            <a class="users-list-name" href="#">Nadia</a>
-                                            <span class="users-list-date">15 Jan</span>
-                                        </li>
+                                    <ul class="users-list clearfix lista listado-encontrados">
                                     </ul>
                                     <!-- /.users-list -->
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer text-center">
-                                    <a href="javascript:void(0)" class="uppercase">Ver todos</a>
+                                    <a href="encontrados.php" class="uppercase">Ver todos</a>
                                 </div>
                                 <!-- /.box-footer -->
                             </div>

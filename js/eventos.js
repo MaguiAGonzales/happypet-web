@@ -51,6 +51,7 @@ function cargarEventos(){
                 pla.find(".lugar").html(fila.lugar);
                 pla.find(".fecha").html(fechaIngAesp(fila.fecha));
                 pla.find(".hora").html(hora12(fila.hora));
+                pla.find(".shareFb").html("<div class='fb-share-button' data-href='http://happypet.conaeingeocajamarca2017.com/eventos.php?id='"+fila.id+" data-layout='button_count' data-size='small' data-mobile-iframe='true'><a class='fb-xfbml-parse-ignore' target='_blank' href='https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2Fhappypet-web%2Feventos.php&amp;src=sdkpreparse'>Compartir</a></div>");
 
                 $(".listado").append(pla.html());
             }

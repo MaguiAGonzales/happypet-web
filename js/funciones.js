@@ -1,5 +1,6 @@
 function fechaIngAesp(fechaIngles){
     var f = new Date(fechaIngles);
+    f.setDate(f.getDate() + 1);
     var d = f.getDate();
     var m =  f.getMonth() +1;
     var y = f.getFullYear();
